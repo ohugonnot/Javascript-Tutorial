@@ -217,7 +217,7 @@ When the **order of the data being stored doesnâ€™t matter**, or when **you donâ
 	* List.__prev ()__ Moves current position back one element
 	* List.__next ()__ Moves current position forward one element
 	* List.__currPos ()__ Returns the current position in list
-        * List.__currEl ()__ Returns the current element in list
+	* List.__currEl ()__ Returns the current element in list
 	* List.__moveTo (*pos*)__ Moves the current position to specified position
 	* List.__count()__ Return Taille du stack
 	* List.__first()__ Return first element of list
