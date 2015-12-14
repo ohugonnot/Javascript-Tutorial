@@ -12,7 +12,7 @@ https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/
 	* RegExp
 * Les symboles : Symbol (apparus avec la sixième édition d'ECMAScript)
 
-### Les fonctions ###
+## Les fonctions ##
 
 Par définition les fonctions ont accès à des variables supplémentaires à l'intérieur de leur corps, appelée **arguments**.   
 
@@ -30,7 +30,7 @@ Par définition les fonctions ont accès à des variables supplémentaires à l'
 	* Function.prototype.__toSource()__
 	* Function.prototype.__toString()__
 
-### Les objets ###
+## Les objets ##
 
 * __Propriétés__
 	* Object.__prototype__
@@ -168,7 +168,7 @@ Par définition les fonctions ont accès à des variables supplémentaires à l'
 	});
 ```
 
-# Rechercher dans un array
+### Rechercher dans un array
 
 * __.indexOf(val,start) :__ Retourne l'index de la premiere occurence.
 * __.lastIndexOf(val,start) :__ Retourne l'index de la derniere occurence.
@@ -189,7 +189,7 @@ Par définition les fonctions ont accès à des variables supplémentaires à l'
 	});
 ```
 
-### Les Listes
+## Les Listes
 
 A list is **an ordered sequence of data**. Each data item stored in a list is called **an element**. In JavaScript, the elements of a list can be of any data type. There is no predeter mined number of elements that can be stored in a list, though the practical limit will be the amount of memory available to the program using the list.     
 
@@ -329,7 +329,7 @@ When the **order of the data being stored doesn’t matter**, or when **you don�
 		}
 ```
 
-### Stack
+## Stack
 
 A stack is a list of elements that are **accessible only from one end of the list**, which is called the **top**. One common, real-world example of a stack is the stack of trays at a cafeteria. Trays are always removed from the top, and when trays are put back on the stack after being washed, they are placed on the top of the stack. The stack is known as a **last-in, first-out (LIFO)** data structure.
 
@@ -370,7 +370,7 @@ removing it from the stack.
 		};
 ```
 
-### Queues
+## Queues
 
 A queue is a type of list where **data are inserted at the end and are removed from the front**. Queues are used to store data in the order in which they occur, as opposed to a stack, in which the last piece of data entered is **the first element used for processing**. Think of a queue like the line at your bank, where the first person into the line is the first person served, and as more customers enter a line, they wait in the back until it is their turn to be served.
 
