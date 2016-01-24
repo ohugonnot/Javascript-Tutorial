@@ -2,11 +2,11 @@ Javascript-Tutorial
 ======================
 https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/
 
-* Les nombres : Number
-* Les chaînes de caractères : String
-* Les booléens : Boolean
-* Les fonctions : Function
-* Les objets : Object
+* Les nombres : **Number**
+* Les chaînes de caractères : **String**
+* Les booléens : **Boolean**
+* Les fonctions : **Function**
+* Les objets : **Object**
 	* Function
 	* Array
 	* Date
@@ -143,19 +143,19 @@ Par définition les fonctions ont accès à des variables supplémentaires à l'
 	* Array.prototype[@@iterator]()
 	* Array.__unobserve()__
 
-```
+```javascript
 	var a = ["chien", "chat", "poule"];
 ```
 
 * __for et for...in :__ permet de parcourir un objet ou un tableau
 
-```
+```javascript
 	for (var i = 0, item; item = a[i]; i++) {
 	// Faire quelque chose avec item
 	}
 ```
 
-```
+```javascript
 	for (var i in a) {
 	// faire quelque chose avec a[i]
 	}	
@@ -163,7 +163,7 @@ Par définition les fonctions ont accès à des variables supplémentaires à l'
 	
 * __.forEach() :__ permet de parcourir un objet ou un tableau
 
-```
+```javascript
 	["chien", "chat", "poule"].forEach(function(valeurCourante, index, array) {
 	  // Faire quelque chose avec valeurCourante et array[index]
 	});
@@ -174,7 +174,7 @@ Par définition les fonctions ont accès à des variables supplémentaires à l'
 * __.indexOf(val,start) :__ Retourne l'index de la premiere occurence.
 * __.lastIndexOf(val,start) :__ Retourne l'index de la derniere occurence.
 
-```
+```javascript
 	var animals = ["dog","cat","seal","walrus","lion", "cat"];
 	console.log(animals.indexOf("cat",2)); // prints 5
 	console.log(animals.lastIndexOf("cat",4)); // prints 1
@@ -183,7 +183,7 @@ Par définition les fonctions ont accès à des variables supplémentaires à l'
 * __.findIndex(callback) :__ Renvoie l'indice d'un élément du tableau qui satisfait une condition donnée par une fonction. Si la fonction renvoie faux pour tous les éléments du tableau, le résultat vaut -1.
 * __.find(callback) :__ Renvoie une valeur contenue dans le tableau si un élément du tableau respecte une condition donnée par la fonction de test passée en argument. Sinon, la valeur undefined est renvoyée.
 
-```
+```javascript
 	var nums = [2, 4, 19, 15, 183, 6, 7, 1, 1];
 	var over = nums.findIndex(function(element) {
 	 return (element >= 100);
@@ -225,7 +225,7 @@ When the **order of the data being stored doesn’t matter**, or when **you don�
 	* List.__last()__ Return last element of list
 	* List.__contains()__ Return true if list contains an element else if return false
 	* List.__set(*pos,val*)__ Set the value val at position pos
-```
+```javascript
 	function List() {
 	 this.listSize = 0;
 	 this.pos = 0;
@@ -349,7 +349,7 @@ removing it from the stack.
 	* Stack.__peek()__ Returns the top element without removing it
 	* Stack.__length()__ Taille du stack
 
-```
+```javascript
 	function Stack() {
 	 this.dataStore = [];
 	 this.top = 0;
@@ -386,7 +386,7 @@ A queue is an example of a **first-in, first-out (FIFO)** data structure. Queues
 	* Queue.__last()__ Returns the last element of queue
 	* Queue.__toString()__ Taille du stack
 	* Queue.__empty()__ Taille du stack
-```
+```javascript
 	function Queue() {
 	 this.dataStore = [];
 	 this.enqueue = function(element) {
