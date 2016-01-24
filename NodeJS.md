@@ -11,7 +11,7 @@ Node.js nous évite de perdre du temps en nous permettant de faire d'autres chos
 <img src='https://user.oc-static.com/files/421001_422000/421164.png' alt='NodeJS' />
 </p>
 
-## Installation de NodeJS & NPM
+## 1 - Installation de NodeJS & NPM
 
  * Nouvel Debian 
  
@@ -28,7 +28,7 @@ Node.js nous évite de perdre du temps en nous permettant de faire d'autres chos
   sudo apt-get install nodejs npm
 ````
 
-## Des serveurs web et des threads
+## 2 - Des serveurs web et des threads
 
 Avec Node.js, on n'utilise pas de serveur web HTTP comme Apache. En fait, c'est à nous de créer le serveur !
 
@@ -42,9 +42,9 @@ Avec Node.js, on n'utilise pas de serveur web HTTP comme Apache. En fait, c'est 
   server.listen(8080);
 ````
 
-## LES ÉVÈNEMENTS
+##  3 - LES ÉVÈNEMENTS
 
-### Ecouter des évènements
+### 3.1 - Ecouter des évènements
 
 ````
   server.on('close', function() { // On écoute l'évènement close
@@ -52,7 +52,7 @@ Avec Node.js, on n'utilise pas de serveur web HTTP comme Apache. En fait, c'est 
   })
 ````
 
-### Emettre des évènements
+### 3.2 - Emettre des évènements
 
 ````
   var EventEmitter = require('events').EventEmitter;
@@ -66,9 +66,9 @@ Avec Node.js, on n'utilise pas de serveur web HTTP comme Apache. En fait, c'est 
   jeu.emit('gameover', 'Vous avez perdu !');
 ````
 
-##  Les modules
+## 4 - Les modules
 
-### Créer un module
+### 4.1 - Créer un module
 
 <p align="center">   
 <img src='https://user.oc-static.com/files/421001_422000/421271.png' alt='NodeJS' />
@@ -96,7 +96,7 @@ En revanche, elles pourront tout à fait être utilisées par d'autres fonctions
   monmodule.direByeBye();
 ````
 
-### Chercher & Installer un module
+### 4.2 - Chercher & Installer un module
 
 ````
   npm search postgresql
@@ -104,9 +104,9 @@ En revanche, elles pourront tout à fait être utilisées par d'autres fonctions
   npm update
 ````
 
-## LE FRAMEWORK EXPRESS.JS
+## 5 - LE FRAMEWORK EXPRESS.JS
 
-### Install et Route
+### 5.1 - Install et Route
 
 ````
   npm install express
@@ -147,7 +147,7 @@ Vous devez écrire :nomvariable dans l'URL de la route, ce qui aura pour effet d
   });
 ````
 
-### Templating : Twig
+### 5.2 - Templating : Twig
 
 ````
   npm install twig
@@ -173,7 +173,7 @@ Vous devez écrire :nomvariable dans l'URL de la route, ce qui aura pour effet d
   });
 ````
 
-### Express et les middlewares
+### 5.3 - Express et les middlewares
 
 Express est fourni avec une quinzaine de middlewares de base, et d'autres développeurs peuvent bien entendu en proposer d'autres via NPM. Les middlewares livrés avec Express fournissent chacun des micro-fonctionnalités.      
     
@@ -203,7 +203,7 @@ http://expressjs.com/guide/using-middleware.html
 * L'ordre d'appel des middlewares est extrêmement important. Par exemple, on commence par activer le logger. Si on le faisait en dernier, on ne loggerait rien !
 Quand vous faites appel aux middlewares, réfléchissez donc à l'ordre, car il peut impacter fortement le fonctionnement de votre application.
 
-## SOCKET.IO : PASSEZ AU TEMPS RÉEL !
+## 6 - SOCKET.IO : PASSEZ AU TEMPS RÉEL !
 
 WebSocket est une fonctionnalité supportée par l'ensemble des navigateurs récents. Elle permet un échange bilatéral synchrone entre le client et le serveur.      
 WebSocket est une nouveauté du Web qui permet de laisser une sorte de "tuyau" de communication ouvert entre le client et le serveur. Le navigateur et le serveur restent connectés entre eux et peuvent s'échanger des messages dans un sens comme dans l'autre dans ce tuyau. Désormais, le serveur peut donc lui-même décider d'envoyer un message au client comme un grand !      
