@@ -30,6 +30,7 @@ yo angular
 <img src='https://sdz-upload.s3.amazonaws.com/prod/upload/mvc-angular.png' alt='NodeJS' />
 </p>
 
+**HTML**
 ````html
 <!doctype html>
 <html>
@@ -52,6 +53,7 @@ yo angular
     </body>
 </html>
 ````
+**JavaScript**
 ````javascript
 var app = angular.module("app", []);
 
@@ -89,6 +91,8 @@ Remarquez que ces modules sont tous précédés par $ . C'est une convention qui
 * __La réutilisabilité__. Nous le verrons lorsque nous aborderons la partie des services, mais il s'agit d'un point très important. Lorsque vous développez des services permettant par exemple de faire des conversions de dates, il y a fort à parier que vous souhaiteriez pouvoir réutiliser ce module dans d'autres projets. L'injection de dépendances permet donc d'inciter les développeurs à créer de petits modules unitaires et à les assembler par la suite pour créer des systèmes plus conséquents.
 * __Les tests__. C'est un point extrêmement important. Vous commencez à me connaître et vous savez que j'accorde une très grande importance aux tests. Si le module que vous souhaitez tester possède 10 dépendances, il est assez embêtant d'avoir à instancier les 10 modules afin de pouvoir juste tester notre module. À la place, nous allons dire au système d'utiliser des mocks (des bouchons) qui vont se comporter comme nos dépendances.
 
+#### $scope
+
 **HTML**
 ````html
 <div ng-app="app">
@@ -97,11 +101,101 @@ Remarquez que ces modules sont tous précédés par $ . C'est une convention qui
     </div>
 </div>
 ````
-** JavaScript **
+**JavaScript**
 ````javascript
 var app = angular.module("app", []);
 
 app.controller("exempleCtrl", function($scope) {
     $scope.name = "World"
+});
+````
+Toute donnée qui n'est pas attachée à $scope n'appartient pas au modèle et ne peut donc pas être exposée à la vue !     
+ Il est parfois nécessaire d'accéder à d'autres contextes que le sien. En effet, lorsque vous êtes dans votre contrôleur, il est possible que vous ayez besoin d'accéder au contexte d'un autre contrôleur. Si tel est le cas, Angular possède l'objet $rootScope qui permet d'accéder à l'ensemble des contextes présents dans votre page.    
+ 
+#### $watch
+https://code.angularjs.org/1.2.26/docs/api/ng/type/$rootScope.Scope     
+     
+````javascript
+app.controller("BillCtrl", function($scope){
+    $scope.articles = [{"name": "Téléphone sans-fil", "quantity": 1, "price": "29.99"}, {"name": "Chargeur iPhone5", "quantity": 1, "price": "29.99"}];
+    $scope.total = function(){
+        var total = 0;
+        for(var i = 0; i < $scope.articles.length; i++){
+            total += $scope.articles[i].price * $scope.articles[i].quantity;
+        }
+        return total;
+    };
+    function calculateDiscount(newValue, oldValue, scope){
+        $scope.discount = (newValue > 100) ? newValue * 0.10 : 0;
+    };
+    
+    $scope.finalTotal = function(){
+        return $scope.total() - $scope.discount;   
+    };
+    
+    $scope.$watch($scope.total, calculateDiscount);
+});
+````
+Remarquez l'utilisation de $watch. Il s'agit d'une fonction attachée à $scope qui va vous permettre d'observer certaines propriétés de votre modèle et de déclencher des opérations lorsque la valeur de ces propriétés changent.     
+     
+La spécification de la fonction est la suivante :      
+     
+    $watch(watchFn, watchAction, deepWatch) 
+       
+Analysons les paramètres :      
+       
+* **watchFn** : la propriété de votre modèle que vous souhaitez observer. Ce paramètre peut-être soit une fonction, soit une expression.
+* **watchAction** : fonction ou expression qui sera appelée lorsque watchFn  change.
+* **deepWatch** : ce paramètre est optionnel. Il s'agit d'un booléen qui lorsqu'il est vrai indique à Angular qu'il doit déclencher watchAction lorsque les sous-propriétés d'un objet changent. Ce paramètre est pratique lorsque vous souhaitez examiner l'ensemble des propriétés d'un tableau ou d'un objet.     
+      
+L'utilisation de $watch est très puissante et je vous encourage vivement à l'utiliser, mais attention aux performances qui peuvent parfois se dégrader. 
+
+### LES DIRECTIVES
+     
+**Les directives sont utilisées lorsque l'on souhaite modifier ou transformer le DOM (Document Object Model).**     
+     
+Angular fournit un certain nombre de directives. Rappelons-en quelques-unes :
+     
+**ngController** : directive permettant d'attacher un contrôleur à la vue     
+**ngRepeat** : directive permettant de répéter un template pour chaque élément d'une collection.     
+**ngModel** : directive permettant de lier les input, textarea ou select à une propriété du contexte actuel.      
+**ngApp** :   est une autre directive dont nous n'avons pas parlé mais qui est extrêmement importante. Cette directive permet tout simplement d'initialiser votre application. Placez-la au niveau de votre balise body ou html, et passez-lui le nom de votre application. 
+
+#### Créer une directive
+
+* __namespaceDirectiveName__
+
+Lorsque vous souhaiterez appeler votre directive dans votre vue, utilisez la syntaxe suivante :
+
+* __namespace-directiveName__
+
+Ainsi, si je crée la directive loading, mon module JavaScript s'appellera myLoading et je pourrai l'appeler dans mon code HTML par le nom my-loading.
+
+````javascript
+var myModule = angular.module(...);
+
+myModule.directive('namespaceDirectiveName', function factory(injectables) { 
+    var directiveDefinitionObject = {
+        restrict: string,
+        priority: number,
+        template: string,
+        templateUrl: string,
+        replace: bool,
+        transclude: bool,
+        scope: bool or object,
+        controller: function controllerConstructor($scope,
+                                                          $element,
+                                                          $attrs,
+                                                          $transclude),
+        require: string,
+        link: function postLink(scope, iElement, iAttrs) { ... }, 
+        compile: function compile(tElement, tAttrs, transclude) {
+            return {
+                pre: function preLink(scope, iElement, iAttrs, controller) { ... }, 
+                post: function postLink(scope, iElement, iAttrs, controller) { ... }
+            }
+        }
+    };
+    return directiveDefinitionObject; 
 });
 ````
