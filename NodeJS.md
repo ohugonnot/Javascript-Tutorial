@@ -16,23 +16,23 @@ Node.js nous évite de perdre du temps en nous permettant de faire d'autres chos
  * Nouvel Debian 
  
 ````
- sudo apt-get install nodejs nodejs-dev npm
+     sudo apt-get install nodejs nodejs-dev npm
 ````
  
   * Sinon
 ````
-  sudo apt-get install python-software-properties python g++ make
-  sudo apt-get install software-properties-common
-  sudo add-apt-repository ppa:chris-lea/node.js
-  sudo apt-get update
-  sudo apt-get install nodejs npm
+     sudo apt-get install python-software-properties python g++ make
+     sudo apt-get install software-properties-common
+     sudo add-apt-repository ppa:chris-lea/node.js
+     sudo apt-get update
+     sudo apt-get install nodejs npm
 ````
 
 ## 2 - Des serveurs web et des threads
 
 Avec Node.js, on n'utilise pas de serveur web HTTP comme Apache. En fait, c'est à nous de créer le serveur !
 
-````
+````javascript
   var http = require('http');
   
   var server = http.createServer(function(req, res) {
@@ -46,7 +46,7 @@ Avec Node.js, on n'utilise pas de serveur web HTTP comme Apache. En fait, c'est 
 
 ### 3.1 - Ecouter des évènements
 
-````
+````javascript
   server.on('close', function() { // On écoute l'évènement close
       console.log('Bye bye !');
   })
@@ -54,7 +54,7 @@ Avec Node.js, on n'utilise pas de serveur web HTTP comme Apache. En fait, c'est 
 
 ### 3.2 - Emettre des évènements
 
-````
+````javascript
   var EventEmitter = require('events').EventEmitter;
   
   var jeu = new EventEmitter();
@@ -74,7 +74,7 @@ Avec Node.js, on n'utilise pas de serveur web HTTP comme Apache. En fait, c'est 
 <img src='https://user.oc-static.com/files/421001_422000/421271.png' alt='NodeJS' />
 </p>
 
-````
+````javascript
   var direBonjour = function() {
       console.log('Bonjour !');
   }
@@ -89,7 +89,7 @@ Avec Node.js, on n'utilise pas de serveur web HTTP comme Apache. En fait, c'est 
 Toutes les fonctions que vous n'exportez pas dans votre fichier de module resteront privées. Elles ne pourront pas être appelées de l'extérieur.
 En revanche, elles pourront tout à fait être utilisées par d'autres fonctions de votre module.    
 
-````
+````javascript
   var monmodule = require('./monmodule');
   
   monmodule.direBonjour();
@@ -108,8 +108,10 @@ En revanche, elles pourront tout à fait être utilisées par d'autres fonctions
 
 ### 5.1 - Install et Route
 
-````
+````javascript
   npm install express
+  
+  ///
   var express = require('express');
   
   var app = express();
@@ -140,7 +142,7 @@ __Routes dynamiques__
 Express vous permet de gérer des routes dynamiques, c'est-à-dire des routes dont certaines portions peuvent varier.      
 Vous devez écrire :nomvariable dans l'URL de la route, ce qui aura pour effet de créer un paramètre accessible depuis req.params.nomvariable.      
 
-````
+````javascript
   app.get('/etage/:etagenum/chambre', function(req, res) {
       res.setHeader('Content-Type', 'text/plain');
       res.end('Vous êtes à la chambre de l\'étage n°' + req.params.etagenum);
@@ -149,8 +151,10 @@ Vous devez écrire :nomvariable dans l'URL de la route, ce qui aura pour effet d
 
 ### 5.2 - Templating : Twig
 
-````
+````javascript
   npm install twig
+  
+  //
   var Twig = require("twig"),
       express = require('express'),
       app = express();
@@ -208,8 +212,10 @@ Quand vous faites appel aux middlewares, réfléchissez donc à l'ordre, car il 
 WebSocket est une fonctionnalité supportée par l'ensemble des navigateurs récents. Elle permet un échange bilatéral synchrone entre le client et le serveur.      
 WebSocket est une nouveauté du Web qui permet de laisser une sorte de "tuyau" de communication ouvert entre le client et le serveur. Le navigateur et le serveur restent connectés entre eux et peuvent s'échanger des messages dans un sens comme dans l'autre dans ce tuyau. Désormais, le serveur peut donc lui-même décider d'envoyer un message au client comme un grand !      
 
-````
+````javascript
   npm install socket.io
+  
+  //
   var http = require('http');
   var fs = require('fs');
   
@@ -233,7 +239,7 @@ WebSocket est une nouveauté du Web qui permet de laisser une sorte de "tuyau" d
   server.listen(8080);
 ````
 Index.html
-````
+````html
   <!DOCTYPE html>
   <html>
       <head>
