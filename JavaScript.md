@@ -65,9 +65,6 @@ return
 
 ## 2 -  Les objets ##
 
-<p align="center">   
-<img src='https://user.oc-static.com/files/421001_422000/421164.png' alt='NodeJS' />
-</p>
 * __Propriétés__
 	* Object.__prototype__
 	* Object.prototype.__proto__
