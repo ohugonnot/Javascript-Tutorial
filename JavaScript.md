@@ -18,12 +18,14 @@ https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/
 Par définition les fonctions ont accès à des variables supplémentaires à l'intérieur de leur corps, appelée **arguments**.   
 
 * __Propriétés__
-	* Function.__prototype__
-	* Function.__length__  
-	Définit le nombre d'arguments attendus par la fonction.
+	* Function.__prototype__    
+	* Function.__length__    
+	> *Définit le nombre d'arguments attendus par la fonction.*
+	* Function.__arguments__    
+	> *Array contenant la valeurs des arguments passer à la fonction*
 * __Méthodes__
 	* Function.prototype.__apply(__ *thisArg, [argsArray]* __)__     
-	Appelle une fonction en lui passant une valeur this et des arguments sous forme d'un tableau
+	> *Appelle une fonction en lui passant une valeur this et des arguments sous forme d'un tableau*
 	* Function.prototype.__bind(__ *thisArg[, arg1[, arg2[, ...]]]* __)__     
 	> *Crée une nouvelle fonction qui, lorsqu'elle est appelée, a pour contexte this la valeur passée en paramètre et éventuellement une suite d'arguments qui précéderont ceux fournis à l'appel de la fonction créée.*
 	* Function.prototype.__call(__ *thisArg[, arg1[, arg2[, ...]]]* __)__    
@@ -31,8 +33,41 @@ Par définition les fonctions ont accès à des variables supplémentaires à l'
 	* Function.prototype.__toSource()__
 	* Function.prototype.__toString()__
 
+**Astuces**
+* The apply method lets us construct an array of arguments to use to invoke a function.
+It also lets us choose the value of this. The apply method takes two parameters.
+The first is the value that should be bound to this. The second is an array of
+parameters.  
+
+```javascript
+// Make an array of 2 numbers and add them.
+var array = [3, 4];
+var sum = add.apply(null, array); // sum is 7
+```
+* A bonus parameter that is available to functions when they are invoked is the
+arguments array. It gives the function access to all of the arguments that were supplied
+with the invocation, including excess arguments that were not assigned to
+parameters. This makes it possible to write functions that take an unspecified number
+of parameters:
+```javascript
+// Make a function that adds a lot of stuff.
+// Note that defining the variable sum inside of
+// the function does not interfere with the sum
+// defined outside of the function. The function
+// only sees the inner one.
+var sum = function ( ) {
+var i, sum = 0;
+for (i = 0; i < arguments.length; i += 1) {
+sum += arguments[i];
+}
+return
+```
+
 ## 2 -  Les objets ##
 
+<p align="center">   
+<img src='https://user.oc-static.com/files/421001_422000/421164.png' alt='NodeJS' />
+</p>
 * __Propriétés__
 	* Object.__prototype__
 	* Object.prototype.__proto__
@@ -62,7 +97,7 @@ Par définition les fonctions ont accès à des variables supplémentaires à l'
 	* Object.prototype.\__lookupGetter\__()
 	* Object.prototype.\__lookupSetter\__()
 	* Object.prototype.eval()
-	* Object.prototype.hasOwnProperty()
+	* Object.prototype.__hasOwnProperty()__
 	* Object.prototype.isPrototypeOf()
 	* Object.prototype.propertyIsEnumerable()
 	* Object.prototype.toLocaleString()
@@ -76,6 +111,28 @@ Par définition les fonctions ont accès à des variables supplémentaires à l'
 	* Object.unobserve()
 	* Object.values()
 	
+**Astuces**
+* The || operator can be used to fill in default values:
+```javascript
+	var middle = stooge["middle-name"] || "(none)";
+	var status = flight.status || "unknown";
+```
+* Attempting to retrieve values from undefined will throw a TypeError exception. This
+can be guarded against with the && operator:
+```javascript
+flight.equipment // undefined
+flight.equipment.model // throw "TypeError"
+flight.equipment && flight.equipment.model // undefined
+
+console.log("name" in person1); // true
+console.log("title" in person1); // false
+
+for (property in object) {
+console.log("Name: " + property);
+console.log("Value: " + object[property]);
+}
+```
+
 ## 3 - Les Tableaux ##
 
 * __Propriétés__
