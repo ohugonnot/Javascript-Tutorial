@@ -478,3 +478,146 @@ A queue is an example of a **first-in, first-out (FIFO)** data structure. Queues
 			};
 	}
 ```
+
+## 7 - Linked Lists or Doubly Linked Lists
+
+A linked list is **a collection of objects called nodes**. Each node is linked to a successor node in the list using an object reference. The reference to another node is called a link. 
+      
+<p align="center">   
+<img src='http://animechange.free.fr/list.png' alt='list' />
+</p>
+      
+While array elements are referenced by their position, linked list elements are referenced by their relationship to the other elements of the linked list. In Figure 6-1, we say that “bread” follows “milk”, not that “bread” is in the second position. Moving through a linked list involves following the links of the list from the beginning node to the end node (not including the header node, which is sometimes used as a hook for entry into a linked list). Something else to notice in the figure is that we mark the end of a linked list by pointing to a null node.       
+       
+Marking the beginning of a linked list can be a problem. Many linked-list implementations include a special node, called the head, to denote the beginning of a linked list. The linked list shown in Figure 6-1 is redesigned in Figure 6-2 to include a head node.    
+     
+<p align="center">   
+<img src='http://animechange.free.fr/list2.png' alt='list' />
+</p>
+     
+* __Propriétés__
+	* LList.__head__
+* __Méthodes__
+	* LList.__find(*item*)__ Find a element and get the cursor on it and return it
+	* LList.__insert(*newElement, item*)__ insert a new element after the item element
+	* LList.__display()__ display list
+	* LList.__remove(*item*)__ remove the item element
+	* LList.__findLast()__ find the last element of llist
+	* LList.__dispReverse()__ display the reverse list (begin by the end)
+```javascript
+	function Node(element) {
+		this.element = element;
+		this.next = null;
+		this.previous = null;
+	}
+	function LList() {
+		this.head = new Node("head");
+		this.find = function (item) {
+				var currNode = this.head;
+				while (currNode.element != item) {
+					currNode = currNode.next;
+					}
+				return currNode;
+				};
+		this.insert = function (newElement, item) {
+				var newNode = new Node(newElement);
+				var current = this.find(item);
+				newNode.next = current.next;
+				newNode.previous = current;
+				current.next = newNode;
+				};
+		this.display = function () {
+				var currNode = this.head;
+				while (!(currNode.next == null)) {
+					print(currNode.next.element);
+					currNode = currNode.next;
+					}
+				};
+		this.remove = function (item) {
+			var currNode = this.find(item);
+			if (!(currNode.next == null)) {
+				currNode.previous.next = currNode.next;
+				currNode.next.previous = currNode.previous;
+				currNode.next = null;
+				currNode.previous = null;
+				}
+			};
+		this.findLast = function () {
+			var currNode = this.head;
+			while (!(currNode.next == null)) {
+				currNode = currNode.next;
+				}
+			return currNode;
+			};
+		this.dispReverse = function () {
+			var currNode = this.head;
+			currNode = this.findLast();
+			while (!(currNode.previous == null)) {
+				print(currNode.element);
+				currNode = currNode.previous;
+				}
+			};
+	}
+```
+
+Un exemple de cette liste de liée
+```javascript
+	var cities = new LList();
+	cities.insert("Conway", "head");
+	cities.insert("Russellville", "Conway");
+	cities.insert("Carlisle", "Russellville");
+	cities.insert("Alma", "Carlisle");
+	cities.display();
+	console.log();
+	cities.remove("Carlisle");
+	cities.display();
+```
+
+## 8 - Dictionaries
+     
+A dictionary is a **data structure that stores data as key-value pairs**, such as the way a phone book stores its data as names and phone numbers. When you look for a phone number, you first search for the name, and when you find the name, the phone number is found right next to the name. The key is the element you use to perform a search, and the value is the result of the search.
+      
+* __Propriétés__
+	* LList.__datastore__
+* __Méthodes__
+	* LList.__add(*key, value*)__ add an element to dictionnaries with key value
+	* LList.__find(*key*)__ find an element by key
+	* LList.__showAll()__ display list
+	* LList.__remove(*item*)__ remove the element by key
+	* LList.__count()__ count the number of element
+	* LList.__clear()__ vider le dictionnaire
+```javascript
+	function Dictionary() {
+		this.add = function (key, value) {
+				this.datastore[key] = value;
+				};
+		this.datastore = new Array();
+		this.find = function (key) {
+				return this.datastore[key];
+				};
+		this.remove = function (key) {
+				delete this.datastore[key];
+				};
+		this.showAll = function showAll() {
+				for each (var key in Object.keys(this.datastore).sort()) {
+					print(key + " -> " + this.datastore[key]);
+					}
+				}
+		this.count = function () {
+				var n = 0;
+				for each (var key in Object.keys(this.datastore)) {
+					++n;
+					}
+				return n;
+				};
+		this.clear = function () {
+				for each (var key in Object.keys(this.datastore)) {
+					delete this.datastore[key];
+					}
+				};
+	}
+```
+
+## 9 - Sets
+    
+A set is a **collection of unique elements**. The elements of a set are called members. The two most important properties of sets are that **the members of a set are unordered** and that **no member can occur in a set more than once**. Sets play a very important role in computer science but are not considered a data type in many programming languages. Sets can be useful when you want to create a data structure that consists only of unique elements, such as a list of each unique word in a text.
