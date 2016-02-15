@@ -8,4 +8,4 @@
 5. AngularJS. **[Lien](AngularJS.md)**
 6. Meteor. **[Lien](Meteor.md)**
 7. React. **[Lien](React.md)**
-8. JSHint & JSPerf
+8. JSHint, JSLint, JSPerf
