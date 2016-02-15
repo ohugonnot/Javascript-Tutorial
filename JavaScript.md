@@ -721,3 +721,33 @@ A set is a **collection of unique elements**. The elements of a set are called m
 				};
 	}
 ```
+
+## <a name="listes"></a>10 - Bad Part
+
+* **Avoid declaring global variables**.
+	* Declare variables as locally as possible.
+	* Avoid adding properties to the global object.
+	* Use the global object for platform feature detection.
+* **Avoid with statements**
+	* Use short variable names for repeated access to an object.
+	* Explicitly bind local variables to object properties instead of implicitly binding them with a with statement. 
+* **Never Modify the arguments Object**
+	* Copy the arguments object to a real array using [].slice.call(arguments) before modifying it. 
+* **Never modify \__proto\__**
+	* Use Object.create to provide a custom prototype for new objects.
+* ** Don't use == **
+	* Prefer use of === 
+* ** Don't use eval**
+
+## <a name="listes"></a>11 - Good Part
+
+* **Always Declare Local Variables**
+	* Always declare new local variables with var.
+	* Consider using lint tools to help check for unbound variables. 
+* **Use Closure**
+	* Functions can refer to variables defined in outer scopes.
+	* Closures can outlive the function that creates them.
+	* Closures internally store references to their outer variables, andcan both read and update their stored variables.
+* **Make Your Constructors new-Agnostic**
+	* Make a constructor agnostic to its caller’s syntax by reinvoking itself with new or with Object.create.
+	* Document clearly when a function expects to be called with new.
