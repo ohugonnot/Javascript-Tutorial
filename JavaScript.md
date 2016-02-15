@@ -2,6 +2,16 @@ Javascript-Tutorial
 ======================
 https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/
 
+1. [Les Fonctions](#fonctions)
+2. [Les Objets](#objets)
+3. [Les Tableaux](#tableaux)
+4. [Les Listes](#listes)
+5. [Stack](#stack)
+6. [Queues](#queues)
+7. [Linked Lists](#linkedlists)
+8. [Dictionaries](#dictionaries)
+9. [Sets](#sets)
+
 * Les nombres : **Number**
 * Les chaînes de caractères : **String**
 * Les booléens : **Boolean**
@@ -13,7 +23,7 @@ https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/
 	* RegExp
 * Les symboles : Symbol (apparus avec la sixième édition d'ECMAScript)
 
-## 1 - Les fonctions ##
+## <a name="fonctions"></a> 1 - Les fonctions ##
 
 Par définition les fonctions ont accès à des variables supplémentaires à l'intérieur de leur corps, appelée **arguments**.   
 
@@ -63,7 +73,7 @@ sum += arguments[i];
 return
 ```
 
-## 2 -  Les objets ##
+## <a name="objets"></a> 2 -  Les objets ##
 
 * __Propriétés__
 	* Object.__prototype__
@@ -130,7 +140,7 @@ console.log("Value: " + object[property]);
 }
 ```
 
-## 3 - Les Tableaux ##
+## <a name="tableaux"></a> 3 - Les Tableaux ##
 
 * __Propriétés__
 	* Array.__prototype__
@@ -244,7 +254,7 @@ console.log("Value: " + object[property]);
 	});
 ```
 
-## 4 - Les Listes
+## <a name="listes"></a>4 - Les Listes
 
 A list is **an ordered sequence of data**. Each data item stored in a list is called **an element**. In JavaScript, the elements of a list can be of any data type. There is no predeter mined number of elements that can be stored in a list, though the practical limit will be the amount of memory available to the program using the list.     
 
@@ -384,7 +394,7 @@ When the **order of the data being stored doesn’t matter**, or when **you don�
 		}
 ```
 
-## 5 - Stack
+## <a name="stack"></a> 5 - Stack
 
 A stack is a list of elements that are **accessible only from one end of the list**, which is called the **top**. One common, real-world example of a stack is the stack of trays at a cafeteria. Trays are always removed from the top, and when trays are put back on the stack after being washed, they are placed on the top of the stack. The stack is known as a **last-in, first-out (LIFO)** data structure.
 
@@ -425,7 +435,7 @@ removing it from the stack.
 		};
 ```
 
-## 6 - Queues
+## <a name="queues"></a>6 - Queues
 
 A queue is a type of list where **data are inserted at the end and are removed from the front**. Queues are used to store data in the order in which they occur, as opposed to a stack, in which the last piece of data entered is **the first element used for processing**. Think of a queue like the line at your bank, where the first person into the line is the first person served, and as more customers enter a line, they wait in the back until it is their turn to be served.
 
@@ -479,7 +489,7 @@ A queue is an example of a **first-in, first-out (FIFO)** data structure. Queues
 	}
 ```
 
-## 7 - Linked Lists or Doubly Linked Lists
+## <a name="linkedlists"></a>7 - Linked Lists or Doubly Linked Lists
 
 A linked list is **a collection of objects called nodes**. Each node is linked to a successor node in the list using an object reference. The reference to another node is called a link. 
       
@@ -573,7 +583,7 @@ Un exemple de cette liste de liée
 	cities.display();
 ```
 
-## 8 - Dictionaries
+## <a name="dictionaries"></a>8 - Dictionaries
      
 A dictionary is a **data structure that stores data as key-value pairs**, such as the way a phone book stores its data as names and phone numbers. When you look for a phone number, you first search for the name, and when you find the name, the phone number is found right next to the name. The key is the element you use to perform a search, and the value is the result of the search.
       
@@ -618,6 +628,94 @@ A dictionary is a **data structure that stores data as key-value pairs**, such a
 	}
 ```
 
-## 9 - Sets
+## <a name="sets"></a>9 - Sets
     
-A set is a **collection of unique elements**. The elements of a set are called members. The two most important properties of sets are that **the members of a set are unordered** and that **no member can occur in a set more than once**. Sets play a very important role in computer science but are not considered a data type in many programming languages. Sets can be useful when you want to create a data structure that consists only of unique elements, such as a list of each unique word in a text.
+A set is a **collection of unique elements**. The elements of a set are called members. The two most important properties of sets are that **the members of a set are unordered** and that **no member can occur in a set more than once**. Sets play a very important role in computer science but are not considered a data type in many programming languages. Sets can be useful when you want to create a data structure that consists only of unique elements, such as a list of each unique word in a text.      
+       
+* **Union** : A new set is obtained by combining the members of one set with the members of another set.      
+     
+* **Intersection** : A new set is obtained by adding all the members of one set that also exist in a second set.       
+    
+* **Difference** : A new set is obtained by adding all the members of one set except those that also exist in a second set.     
+   
+```javascript  
+	function Set() {
+		this.dataStore = [];
+		this.add = function(data) {
+				if (this.dataStore.indexOf(data) < 0) {
+					this.dataStore.push(data);
+					return true;
+					}
+				else {
+					return false;
+					}
+				};
+		this.remove = function(data) {
+				var pos = this.dataStore.indexOf(data);
+				if (pos > -1) {
+					this.dataStore.splice(pos,1);
+					return true;
+					}
+				else {
+					return false;
+					}
+				};
+		this.size = function() {
+					return this.dataStore.length;
+				};
+		this.union = function(set) {
+				var tempSet = new Set();
+				for (var i = 0; i < this.dataStore.length; ++i) {
+					tempSet.add(this.dataStore[i]);
+					}
+				for (var i = 0; i < set.dataStore.length; ++i) {
+					if (!tempSet.contains(set.dataStore[i])) {
+						tempSet.dataStore.push(set.dataStore[i]);
+						}
+					}
+				return tempSet;
+				}
+		this.intersect = function(set) {
+					var tempSet = new Set();
+					for (var i = 0; i < this.dataStore.length; ++i) {
+							if (set.contains(this.dataStore[i])) {
+								tempSet.add(this.dataStore[i]);
+							}
+						}
+					return tempSet;
+					};
+		this.subset = function(set) {
+				if (this.size() > set.size()) {
+					return false;
+					}
+				else {
+					for each (var member in this.dataStore) {
+						if (!set.contains(member)) {
+							return false;
+							}
+						}
+					}
+				return true;
+				};
+		this.difference = function(set) {
+					var tempSet = new Set();
+					for (var i = 0; i < this.dataStore.length; ++i) {
+						if (!set.contains(this.dataStore[i])) {
+							tempSet.add(this.dataStore[i]);
+							}
+						}
+					return tempSet;
+					};
+		this.contains = function(data) {
+				if (this.dataStore.indexOf(data) > -1) {
+					return true;
+					}
+				else {
+					return false;
+					}
+				}
+		this.show = function show() {
+				return this.dataStore;
+				};
+	}
+```
