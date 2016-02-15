@@ -1084,7 +1084,7 @@ compiled({epithet: "stooge"});
 
 If ERB-style delimiters aren't your cup of tea, you can change Underscore's template settings to use different symbols to set off interpolated code. Define an interpolate regex to match expressions that should be interpolated verbatim, an escape regex to match expressions that should be inserted after being HTML-escaped, and an evaluate regex to match expressions that should be evaluated without insertion into the resulting string. You may define or omit any combination of the three. For example, to perform Mustache.js-style templating:
 
-```
+```javascript
 _.templateSettings = {
   interpolate: /\{\{(.+?)\}\}/g
 };
@@ -1096,14 +1096,14 @@ template({name: "Mustache"});
 
 By default, template places the values from your data in the local scope via the with statement. However, you can specify a single variable name with the variable setting. This can significantly improve the speed at which a template is able to render.
 
-```
+```javascript
 _.template("Using 'with': <%= data.answer %>", {variable: 'data'})({answer: 'no'});
 => "Using 'with': no"
 ```
 
 Precompiling your templates can be a big help when debugging errors you can't reproduce. This is because precompiled templates can provide line numbers and a stack trace, something that is not possible when compiling templates on the client. The source property is available on the compiled template function for easy precompilation.
 
-```
+```javascript
 <script>
   JST.project = <%= _.template(jstText).source %>;
 </script>
@@ -1114,7 +1114,7 @@ Precompiling your templates can be a big help when debugging errors you can't re
 ```chain_.chain(obj) ```
 Returns a wrapped object. Calling methods on this object will continue to return wrapped objects until value is called.
 
-```
+```javascript
 var stooges = [{name: 'curly', age: 25}, {name: 'moe', age: 21}, {name: 'larry', age: 23}];
 var youngest = _.chain(stooges)
   .sortBy(function(stooge){ return stooge.age; })
@@ -1127,7 +1127,7 @@ var youngest = _.chain(stooges)
 ```value_(obj).value() ```
 Extracts the value of a wrapped object.
 
-```
+```javascript
 _([1, 2, 3]).value();
 => [1, 2, 3]
 ```
