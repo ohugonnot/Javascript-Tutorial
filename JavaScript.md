@@ -11,7 +11,9 @@ https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/
 6. [Queues](#queues)
 7. [Linked Lists](#linkedlists)
 8. [Dictionaries](#dictionaries)
-9. [Sets](#sets)	
+9. [Sets](#sets)
+10. [Bad Parts](#bad)
+11. [Good Parts](#good)
 
 #### Les Types
 * Les nombres : **Number**
@@ -722,7 +724,7 @@ A set is a **collection of unique elements**. The elements of a set are called m
 	}
 ```
 
-## <a name="listes"></a>10 - Bad Part
+## <a name="bad"></a>10 - Bad Part
 
 * **Avoid declaring global variables**.
 	* Declare variables as locally as possible.
@@ -739,7 +741,7 @@ A set is a **collection of unique elements**. The elements of a set are called m
 	* Prefer use of === 
 * ** Don't use eval**
 
-## <a name="listes"></a>11 - Good Part
+## <a name="good"></a>11 - Good Part
 
 * **Always Declare Local Variables**
 	* Always declare new local variables with var.
