@@ -1,7 +1,8 @@
 Javascript-Tutorial 
 ======================
 https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/
-     
+
+#### Menu
 1. [Les Fonctions](#fonctions)
 2. [Les Objets](#objets)
 3. [Les Tableaux](#tableaux)
@@ -11,8 +12,8 @@ https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/
 7. [Linked Lists](#linkedlists)
 8. [Dictionaries](#dictionaries)
 9. [Sets](#sets)	
-	
 
+#### Les Types
 * Les nombres : **Number**
 * Les chaînes de caractères : **String**
 * Les booléens : **Boolean**
