@@ -1,5 +1,14 @@
-pFunctional Programing
+Functional Programing
 ======================
+
+#### Menu
+1. [Collections](#collection)
+2. [Array Functions](#array)
+3. [Functions](#function)
+4. [Object Functions](#objet)
+5. [Utility Functions](#utility)
+6. [Chaining](#chaining)
+
 
 ### Concepts 
 
@@ -16,7 +25,7 @@ _The major evolution that is still going on for me is towards a more functional 
 * Passing existing functions to other functions to build even more complex
 abstractions    
 
-## Collection Functions (Arrays or Objects)
+## <a name="collection"></a> Collection Functions (Arrays or Objects)
 
 ```each_.each(list, iteratee, [context])``` Alias: ```forEach```     
 **Iterates over a list of elements**, yielding each in turn to an iteratee function. The iteratee is bound to the context object, if onen is passed. Each invocation of iteratee is called with three arguments: (element, index, list). If list is a JavaScript object, iteratee's arguments will be (value, key, list). Returns the list for chaining.
@@ -92,10 +101,7 @@ If no match is found, or if list is empty, undefined will be returned.
 
 ```javascript
 _.findWhere(publicServicePulitzers, {newsroom: "The New York Times"});
-=> {year: 1918, newsroom: "The New York Times",
-  reason: "For its public service in publishing in full so many official reports,
-  documents and speeches by European statesmen relating to the progress and
-  conduct of the war."}
+=> {year: 1918, newsroom: "The New York Times"}
 ```
 
 ```reject_.reject(list, predicate, [context]) ```
@@ -254,7 +260,7 @@ _.partition([0, 1, 2, 3, 4, 5], isOdd);
 => [[1, 3, 5], [0, 2, 4]]
 ```
 
-## Array Functions
+## <a name="array"></a>Array Functions
 
 Note: All array functions will also work on the arguments object. However, Underscore functions are not designed to work on "sparse" arrays.      
      
@@ -444,7 +450,7 @@ _.range(0);
 => []
 ```
 
-## Function (uh, ahem) Functions
+## <a name="function"></a>Function (uh, ahem) Functions
 
 ```bind_.bind(function, object, *arguments) ```
 Bind a function to an object, meaning that whenever the function is called, the value of this will be the object. Optionally, pass arguments to the function to pre-fill them, also known as partial application. For partial application without context binding, use partial.
@@ -597,7 +603,7 @@ welcome('moe');
 => 'hi: MOE!'
 ```
 
-## Object Functions
+## <a name="objet"></a>Object Functions
 
 ```keys_.keys(object) ```
 Retrieve all the names of the object's own enumerable properties.
@@ -942,7 +948,7 @@ _.isUndefined(window.missingVariable);
 => true
 ```
 
-## Utility Functions
+##<a name="utility"></a> Utility Functions
 
 ```noConflict_.noConflict() ```
 Give control of the _ variable back to its previous owner. Returns a reference to the Underscore object.
@@ -1007,35 +1013,40 @@ _("fabio").capitalize();
 A mostly-internal function to generate callbacks that can be applied to each element in a collection, returning the desired result — either identity, an arbitrary callback, a property matcher, or a property accessor. 
 The full list of Underscore methods that transform predicates through _.iteratee is map, find, filter, reject, every, some, max, min, sortBy, groupBy, indexBy, countBy, sortedIndex, partition, and unique.
 
+```javascript
 var stooges = [{name: 'curly', age: 25}, {name: 'moe', age: 21}, {name: 'larry', age: 23}];
 _.map(stooges, _.iteratee('age'));
 => [25, 21, 23];
-
+```
 
 ``` uniqueId_.uniqueId([prefix]) ```
 Generate a globally-unique id for client-side models or DOM elements that need one. If prefix is passed, the id will be appended to it.
 
+```javascript
 _.uniqueId('contact_');
 => 'contact_104'
-
+```
 
 ```escape_.escape(string) ```
 Escapes a string for insertion into HTML, replacing &, <, >, ", `, and ' characters.
 
+```javascript
 _.escape('Curly, Larry & Moe');
 => "Curly, Larry &amp; Moe"
-
+```
 
 ``` unescape_.unescape(string) ```
 The opposite of escape, replaces &amp;, &lt;, &gt;, &quot;, &#96; and &#x27; with their unescaped counterparts.
 
+```javascript
 _.unescape('Curly, Larry &amp; Moe');
 => "Curly, Larry & Moe"
-
+```
 
 ``` result_.result(object, property, [defaultValue]) ```
 If the value of the named property is a function then invoke it with the object as context; otherwise, return it. If a default value is provided and the property doesn't exist or is undefined then the default will be returned. If defaultValue is a function its result will be returned.
 
+```javascript
 var object = {cheese: 'crumpets', stuff: function(){ return 'nonsense'; }};
 _.result(object, 'cheese');
 => "crumpets"
@@ -1043,18 +1054,20 @@ _.result(object, 'stuff');
 => "nonsense"
 _.result(object, 'meat', 'ham');
 => "ham"
-
+```
 
 ```now_.now() ```
 Returns an integer timestamp for the current time, using the fastest method available in the runtime. Useful for implementing timing/animation functions.
 
+```javascript
 _.now();
 => 1392066795351
-
+```
 
 ``` template_.template(templateString, [settings]) ```
 Compiles JavaScript templates into functions that can be evaluated for rendering. Useful for rendering complicated bits of HTML from JSON data sources. Template functions can both interpolate values, using <%= … %>, as well as execute arbitrary JavaScript code, with <% … %>. If you wish to interpolate a value, and have it be HTML-escaped, use <%- … %>. When you evaluate a template function, pass in a data object that has properties corresponding to the template's free variables. The settings argument should be a hash containing any _.templateSettings that should be overridden.
 
+```javascript
 var compiled = _.template("hello: <%= name %>");
 compiled({name: 'moe'});
 => "hello: moe"
@@ -1067,8 +1080,11 @@ You can also use print from within JavaScript code. This is sometimes more conve
 var compiled = _.template("<% print('Hello ' + epithet); %>");
 compiled({epithet: "stooge"});
 => "Hello stooge"
+```
+
 If ERB-style delimiters aren't your cup of tea, you can change Underscore's template settings to use different symbols to set off interpolated code. Define an interpolate regex to match expressions that should be interpolated verbatim, an escape regex to match expressions that should be inserted after being HTML-escaped, and an evaluate regex to match expressions that should be evaluated without insertion into the resulting string. You may define or omit any combination of the three. For example, to perform Mustache.js-style templating:
 
+```
 _.templateSettings = {
   interpolate: /\{\{(.+?)\}\}/g
 };
@@ -1076,14 +1092,42 @@ _.templateSettings = {
 var template = _.template("Hello {{ name }}!");
 template({name: "Mustache"});
 => "Hello Mustache!"
+```
+
 By default, template places the values from your data in the local scope via the with statement. However, you can specify a single variable name with the variable setting. This can significantly improve the speed at which a template is able to render.
 
+```
 _.template("Using 'with': <%= data.answer %>", {variable: 'data'})({answer: 'no'});
 => "Using 'with': no"
+```
+
 Precompiling your templates can be a big help when debugging errors you can't reproduce. This is because precompiled templates can provide line numbers and a stack trace, something that is not possible when compiling templates on the client. The source property is available on the compiled template function for easy precompilation.
 
+```
 <script>
   JST.project = <%= _.template(jstText).source %>;
 </script>
-Chaining
+```
 
+## <a name="chaining"></a> Chaining 
+
+```chain_.chain(obj) ```
+Returns a wrapped object. Calling methods on this object will continue to return wrapped objects until value is called.
+
+```
+var stooges = [{name: 'curly', age: 25}, {name: 'moe', age: 21}, {name: 'larry', age: 23}];
+var youngest = _.chain(stooges)
+  .sortBy(function(stooge){ return stooge.age; })
+  .map(function(stooge){ return stooge.name + ' is ' + stooge.age; })
+  .first()
+  .value();
+=> "moe is 21"
+```
+
+```value_(obj).value() ```
+Extracts the value of a wrapped object.
+
+```
+_([1, 2, 3]).value();
+=> [1, 2, 3]
+```
