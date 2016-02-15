@@ -724,7 +724,7 @@ A set is a **collection of unique elements**. The elements of a set are called m
 	}
 ```
 
-## <a name="bad"></a>10 - Bad Part
+## <a name="bad"></a>10 - Bad Parts
 
 * **Avoid declaring global variables**.
 	* Declare variables as locally as possible.
@@ -741,7 +741,7 @@ A set is a **collection of unique elements**. The elements of a set are called m
 	* Prefer use of === 
 * ** Don't use eval**
 
-## <a name="good"></a>11 - Good Part
+## <a name="good"></a>11 - Good Parts
 
 * **Always Declare Local Variables**
 	* Always declare new local variables with var.
