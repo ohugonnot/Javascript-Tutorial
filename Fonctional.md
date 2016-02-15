@@ -1,4 +1,4 @@
-Functional Programing
+pFunctional Programing
 ======================
 
 ### Concepts 
@@ -8,7 +8,7 @@ You may have heard of functional programming on your favorite news aggregation s
 _The major evolution that is still going on for me is towards a more functional programming style, which involves unlearning a lot of old habits, and backing away from some OOP directions._    
 
 <p align="center">   
-<img src='https://animechange.free.fr/fonctional.png' alt='Fonctional' />
+<img src='http://animechange.free.fr/fonctional.png' alt='Fonctional' />
 </p>
 
 * Identifying an abstraction and building a function for it
@@ -833,149 +833,167 @@ _.isObject(1);
 ```isArguments_.isArguments(object) ```
 Returns true if object is an Arguments object.
 
+```javascript
 (function(){ return _.isArguments(arguments); })(1, 2, 3);
 => true
 _.isArguments([1,2,3]);
 => false
-
+```
 
 ```isFunction_.isFunction(object) ```
 Returns true if object is a Function.
 
+```javascript
 _.isFunction(alert);
 => true
-
+```
 
 ```isString_.isString(object) ```
 Returns true if object is a String.
 
+```javascript
 _.isString("moe");
 => true
-
+```
 
 ```isNumber_.isNumber(object) ```
 Returns true if object is a Number (including NaN).
 
+```javascript
 _.isNumber(8.4 * 5);
 => true
-
+```
 
 ```isFinite_.isFinite(object) ```
 Returns true if object is a finite Number.
 
+```javascript
 _.isFinite(-101);
 => true
 
 _.isFinite(-Infinity);
 => false
-
+```
 
 ```isBoolean_.isBoolean(object) ``` 
 Returns true if object is either true or false.
 
+```javascript
 _.isBoolean(null);
 => false
-
+```
 
 ```isDate_.isDate(object) ```
 Returns true if object is a Date.
 
+```javascript
 _.isDate(new Date());
 => true
-
+```
 
 ```isRegExp_.isRegExp(object) ```
 Returns true if object is a RegExp.
 
+```javascript
 _.isRegExp(/moe/);
 => true
-
+```
 
 ```isError_.isError(object) ```
 Returns true if object inherrits from an Error.
 
+```javascript
 try {
   throw new TypeError("Example");
 } catch (o_O) {
   _.isError(o_O)
 }
 => true
-
+```
 
 ```isNaN_.isNaN(object) ```
 Returns true if object is NaN.
 Note: this is not the same as the native isNaN function, which will also return true for many other not-number values, such as undefined.
 
+```javascript
 _.isNaN(NaN);
 => true
 isNaN(undefined);
 => true
 _.isNaN(undefined);
 => false
-
+```
 
 ``` isNull_.isNull(object) ```
 Returns true if the value of object is null.
 
+```javascript
 _.isNull(null);
 => true
 _.isNull(undefined);
 => false
-
+```
 
 ```isUndefined_.isUndefined(value) ```
 Returns true if value is undefined.
 
+```javascript
 _.isUndefined(window.missingVariable);
 => true
-
+```
 
 ## Utility Functions
 
 ```noConflict_.noConflict() ```
 Give control of the _ variable back to its previous owner. Returns a reference to the Underscore object.
 
+```javascript
 var underscore = _.noConflict();
-
+```
 
 ```identity_.identity(value) ```
 Returns the same value that is used as the argument. In math: f(x) = x
 This function looks useless, but is used throughout Underscore as a default iteratee.
 
+```javascript
 var stooge = {name: 'moe'};
 stooge === _.identity(stooge);
 => true
-
+```
 
 ```constant_.constant(value) ```
 Creates a function that returns the same value that is used as the argument of _.constant.
 
+```javascript
 var stooge = {name: 'moe'};
 stooge === _.constant(stooge)();
 => true
-
+```
 
 ```noop_.noop() ```
 Returns undefined irrespective of the arguments passed to it. Useful as the default for optional callback arguments.
 
+```javascript
 obj.initialize = _.noop;
-
+```
 
 ```times_.times(n, iteratee, [context]) ```
 Invokes the given iteratee function n times. Each invocation of iteratee is called with an index argument. Produces an array of the returned values. 
 Note: this example uses the chaining syntax.
 
+```javascript
 _(3).times(function(n){ genie.grantWishNumber(n); });
 random_.random(min, max) 
 Returns a random integer between min and max, inclusive. If you only pass one argument, it will return a number between 0 and that number.
 
 _.random(0, 100);
 => 42
-
+```
 
 ``` mixin_.mixin(object) ```
 Allows you to extend Underscore with your own utility functions. Pass a hash of {name: function} definitions to have your functions added to the Underscore object, as well as the OOP wrapper.
 
+```javascript
 _.mixin({
   capitalize: function(string) {
     return string.charAt(0).toUpperCase() + string.substring(1).toLowerCase();
@@ -983,7 +1001,7 @@ _.mixin({
 });
 _("fabio").capitalize();
 => "Fabio"
-
+```
 
 ``` iteratee_.iteratee(value, [context]) ```
 A mostly-internal function to generate callbacks that can be applied to each element in a collection, returning the desired result — either identity, an arbitrary callback, a property matcher, or a property accessor. 
