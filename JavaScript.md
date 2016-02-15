@@ -8,9 +8,9 @@ https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/
 4. [Les Listes](#listes)
 5. [Stack](#stack)
 6. [Queues](#queues)
-7. [Linked Lists](#linkedlists)      
-8. [Dictionaries](#dictionaries)     
-9. [Sets](#sets)     
+7. [Linked Lists](#linkedlists)
+8. [Dictionaries](#dictionaries)
+9. [Sets](#sets)
 	
 * Les nombres : **Number**
 * Les chaînes de caractères : **String**
