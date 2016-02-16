@@ -13,4 +13,4 @@
 
 * [You-Dont-Know-JS](https://github.com/getify/You-Dont-Know-JS) -> Bon tutoriaux, base, objet, requete asynchrones
 * [AirbnbJavascript](https://github.com/airbnb/javascript) -> Bon guide pour le EMScript 6
-
+* [Super Heros JS](http://superherojs.com/) -> Les bonnes pratiques
