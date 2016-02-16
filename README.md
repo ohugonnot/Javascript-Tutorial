@@ -9,6 +9,8 @@
 7. React. **[Lien](React.md)**
 8. JSHint, JSLint, JSPerf    
 
+#### Les utiles
+
 * [You-Dont-Know-JS](https://github.com/getify/You-Dont-Know-JS) -> Bon tutoriaux, base, objet, requete asynchrones
 * [AirbnbJavascript](https://github.com/airbnb/javascript) -> Bon guide pour le EMScript 6
 
