@@ -147,3 +147,63 @@ $(sel).trigger('ev');
 * Certains événements peuvent être déclenchés par une instruction, en utilisant la méthode ```trigger()``` : ```blur```, ```change```, ```click```, ```dblclick```, ```error```, ```focus```, ```keydown```, ```keypress```, ```keyup```, ```select``` et ```submit```. Par contre, les événements suivants ne sont pas déclenchables : ```load```, ```mousedown```, ```mouseout```, ```mouseover```, ```mousemove```, ```mouseup```, ```resize``` et ```unload```.     
 * Il est possible de définir des événements personnalisés en jQuery, en utilisant la méthode ```on()```. L'événement ainsi créé peut être déclenché avec la méthode ```trigger()```.     
 * La délégation d'événements permet de cloner la gestion événementielle d'un élément à un ou plusieurs de ses enfants créés à la volée dans le code jQuery. Peu importe le nombre d'éléments créés : ils se comporteront tous (d'un point de vue événementiel) comme leur parent. Et ce, sans qu'aucun code supplémentaire ne soit écrit.      
+
+## Les bonnes pratiques avec JQUERY
+
+Prefixez vos variables d'objets jQuery avec un $.
+
+```javascript 
+// pas bien
+var sidebar = $('.sidebar');
+
+// bien
+var $sidebar = $('.sidebar');
+``` 
+
+Mettez en cache vos requêtes jQuery.
+
+```javascript 
+// pas bien
+function setSidebar() {
+  $('.sidebar').hide();
+
+  // ...stuff...
+
+  $('.sidebar').css({
+    'background-color': 'pink'
+  });
+}
+
+// bien
+function setSidebar() {
+  var $sidebar = $('.sidebar');
+  $sidebar.hide();
+
+  // ...stuff...
+
+  $sidebar.css({
+    'background-color': 'pink'
+  });
+}
+```
+
+Pour les requêtes du DOM, utilisez le sélecteur en cascades $('.sidebar ul') ou le parent > enfant $('.sidebar > ul'). jsPerf     
+     
+Utilisez find avec des objets de requêtes jQuery appartenants à la portée.     
+
+```javascript 
+// pas bien
+$('ul', '.sidebar').hide();
+
+// pas bien
+$('.sidebar').find('ul').hide();
+
+// bien
+$('.sidebar ul').hide();
+
+// bien
+$('.sidebar > ul').hide();
+
+// bien
+$sidebar.find('ul');
+``` 
