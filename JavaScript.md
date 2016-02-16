@@ -814,7 +814,7 @@ A set is a **collection of unique elements**. The elements of a set are called m
 	// good
 	someStack.push('abracadabra');
 ```
-* **Use array spreads ... to copy arrays.**
+* **Quand vous devez copier un tableau, utilisez Array#slice. jsPerf**
 ```javascript
 	// bad
 	const len = items.length;
@@ -826,12 +826,19 @@ A set is a **collection of unique elements**. The elements of a set are called m
 	}
 	
 	// good
-	const itemsCopy = [...items];
+	objetsCopie = objets.slice();
 ```
-* **To convert an array-like object to an array, use Array#from.**
+* **Pour convertir un objet semblable à un tableau en un tableau, utilisez Array#slice ou Array#from**
 ```javascript
 	const foo = document.querySelectorAll('.foo');
 	const nodes = Array.from(foo);
+	
+	or 
+	
+	function trigger() {
+	  var args = Array.prototype.slice.call(arguments);
+	  ...
+	}
 ```
 * **Use destructuring.**
 ```javascript
