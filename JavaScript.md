@@ -54,27 +54,38 @@ The first is the value that should be bound to this. The second is an array of
 parameters.  
 
 ```javascript
-// Make an array of 2 numbers and add them.
-var array = [3, 4];
-var sum = add.apply(null, array); // sum is 7
+	// Make an array of 2 numbers and add them.
+	function foo() {
+	    return 42;
+	}
+	
+	foo.bar = "hello world";
+	
+	typeof foo;         // "function"
+	typeof foo();       // "number"
+	typeof foo.bar;     // "string"
+
+	var array = [3, 4];
+	var sum = add.apply(null, array); // sum is 7
 ```
 * A bonus parameter that is available to functions when they are invoked is the
 arguments array. It gives the function access to all of the arguments that were supplied
 with the invocation, including excess arguments that were not assigned to
 parameters. This makes it possible to write functions that take an unspecified number
 of parameters:
+
 ```javascript
-// Make a function that adds a lot of stuff.
-// Note that defining the variable sum inside of
-// the function does not interfere with the sum
-// defined outside of the function. The function
-// only sees the inner one.
-var sum = function ( ) {
-var i, sum = 0;
-for (i = 0; i < arguments.length; i += 1) {
-sum += arguments[i];
-}
-return
+	// Make a function that adds a lot of stuff.
+	// Note that defining the variable sum inside of
+	// the function does not interfere with the sum
+	// defined outside of the function. The function
+	// only sees the inner one.
+	var sum = function ( ) {
+	var i, sum = 0;
+	for (i = 0; i < arguments.length; i += 1) {
+	sum += arguments[i];
+	}
+	return
 ```
 
 ## <a name="objets"></a> 2 -  Les objets ##
@@ -130,6 +141,7 @@ return
 ```
 * Attempting to retrieve values from undefined will throw a TypeError exception. This
 can be guarded against with the && operator:
+
 ```javascript
 flight.equipment // undefined
 flight.equipment.model // throw "TypeError"
@@ -737,12 +749,17 @@ A set is a **collection of unique elements**. The elements of a set are called m
 	* Copy the arguments object to a real array using [].slice.call(arguments) before modifying it. 
 * **Never modify \__proto\__**
 	* Use Object.create to provide a custom prototype for new objects.
-* ** Don't use == **
+* **Don't use ==**
 	* Prefer use of === 
-* ** Don't use eval**
+* **Don't use eval**
 
 ## <a name="good"></a>11 - Good Parts
 
+* **Always use  the literal syntax for object creation**
+```javascript
+	var array = [];
+	var object = {}
+```
 * **Always Declare Local Variables**
 	* Always declare new local variables with var.
 	* Consider using lint tools to help check for unbound variables. 
@@ -753,3 +770,123 @@ A set is a **collection of unique elements**. The elements of a set are called m
 * **Make Your Constructors new-Agnostic**
 	* Make a constructor agnostic to its caller’s syntax by reinvoking itself with new or with Object.create.
 	* Document clearly when a function expects to be called with new.
+* **You must reassign references, use let instead of var.**
+```javascript
+	// bad
+	var count = 1;
+	if (true) {
+	  count += 1;
+	}
+	
+	// good, use the let.
+	let count = 1;
+	if (true) {
+	  count += 1;
+	}
+```
+* **Use object method shorthand.**
+```javascript
+	// bad
+	const atom = {
+	  value: 1,
+	
+	  addValue: function (value) {
+	    return atom.value + value;
+	  },
+	};
+	
+	// good
+	const atom = {
+	  value: 1,
+	
+	  addValue(value) {
+	    return atom.value + value;
+	  },
+	};
+```
+* **Use Array#push instead of direct assignment to add items to an array.**
+```javascript
+	const someStack = [];
+	
+	// bad
+	someStack[someStack.length] = 'abracadabra';
+	
+	// good
+	someStack.push('abracadabra');
+```
+* **Use array spreads ... to copy arrays.**
+```javascript
+	// bad
+	const len = items.length;
+	const itemsCopy = [];
+	let i;
+	
+	for (i = 0; i < len; i++) {
+	  itemsCopy[i] = items[i];
+	}
+	
+	// good
+	const itemsCopy = [...items];
+```
+* **To convert an array-like object to an array, use Array#from.**
+```javascript
+	const foo = document.querySelectorAll('.foo');
+	const nodes = Array.from(foo);
+```
+* **Use destructuring.**
+```javascript
+	// bad
+	function getFullName(user) {
+	  const firstName = user.firstName;
+	  const lastName = user.lastName;
+	
+	  return `${firstName} ${lastName}`;
+	}
+	
+	// good
+	function getFullName(user) {
+	  const { firstName, lastName } = user;
+	  return `${firstName} ${lastName}`;
+	}
+	
+	// best
+	function getFullName({ firstName, lastName }) {
+	  return `${firstName} ${lastName}`;
+	}
+	
+	const arr = [1, 2, 3, 4];
+
+	// bad
+	const first = arr[0];
+	const second = arr[1];
+	
+	// good
+	const [first, second] = arr;
+```
+* **Use object destructuring for multiple return values, not array destructuring.**
+```javascript
+	// bad
+	function processInput(input) {
+	  // then a miracle occurs
+	  return [left, right, top, bottom];
+	}
+	
+	// the caller needs to think about the order of return data
+	const [left, __, top] = processInput(input);
+	
+	// good
+	function processInput(input) {
+	  // then a miracle occurs
+	  return { left, right, top, bottom };
+	}
+	
+	// the caller selects only the data they need
+	const { left, right } = processInput(input);
+```
+* **When programmatically building up strings, use template strings instead of concatenation.**
+```javascript
+	// good
+	function sayHi(name) {
+	  return `How are you, ${name}?`;
+	}
+```
