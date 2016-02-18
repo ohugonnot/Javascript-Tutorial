@@ -11,6 +11,7 @@
 
 #### Les liens utiles
 
+* [FreeCodeCamp](https://github.com/FreeCodeCamp/FreeCodeCamp) -> Turoriaux et Certification Back and FrontEnd
 * [You-Dont-Know-JS](https://github.com/getify/You-Dont-Know-JS) -> Bon tutoriaux, base, objet, requete asynchrones
 * [AirbnbJavascript](https://github.com/airbnb/javascript) -> Bon guide pour le EMScript 6
 * [Super Heros JS](http://superherojs.com/) -> Les bonnes pratiques
@@ -38,4 +39,10 @@
 * [IntroJS](https://github.com/usablica/intro.js) - Create intro and tutorial for your website
 * [FastClick](https://github.com/ftlabs/fastclick) - Elimate the 300ms delay on clic touch UI
 * [VideoJS](https://github.com/videojs/video.js) - Playing video on HTML5
-* 
+* [LetsChat](https://github.com/sdelements/lets-chat) - Create Small chat for team
+* [Phaser](https://github.com/photonstorm/phaser) - Create game in javascript
+* [Immutalbe](https://github.com/facebook/immutable-js) - Use imutable data
+* [Json Server](https://github.com/typicode/json-server) - create API REST easily
+* [Clipboard](https://github.com/zenorocha/clipboard.js) - Copy and Paste without flash
+* [SmartCrop](https://github.com/jwagner/smartcrop.js) - AutoCrop with smart choice
+* [JSVerbalExpressions](https://github.com/VerbalExpressions/JSVerbalExpressions) - Easy Regex creator
