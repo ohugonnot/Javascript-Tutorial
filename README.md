@@ -29,7 +29,7 @@
 * [Pixi.js](https://github.com/pixijs/pixi.js) - Super fast HTML 5 2D rendering engine that uses webGL with canvas fallback
 * [Three](https://github.com/mrdoob/three.js) - Lib 3D en javascript
 * [Phaser](https://github.com/photonstorm/phaser) - Create game in javascript
-* [Paper.js](]http://paperjs.org/examples/meta-balls/) - The Swiss Army Knife of Vector Graphics Scripting 
+* [Paper.js](http://paperjs.org/examples/meta-balls/) - The Swiss Army Knife of Vector Graphics Scripting 
 
 
 ##### Autres
