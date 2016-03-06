@@ -24,9 +24,15 @@
 * [HightCharts](http://www.highcharts.com/)
 * [ChartJS](https://github.com/nnnick/Chart.js)
 
+
+##### 3D et Design HTML5
+* [Pixi.js](https://github.com/pixijs/pixi.js) - Super fast HTML 5 2D rendering engine that uses webGL with canvas fallback
+* [Three](https://github.com/mrdoob/three.js) - Lib 3D en javascript
+* [Phaser](https://github.com/photonstorm/phaser) - Create game in javascript
+
+
 ##### Autres
 * [Hakimel](https://github.com/hakimel/reveal.js) - Créer des présentation en HTML style powerpaint
-* [Three](https://github.com/mrdoob/three.js) - Lib 3D en javascript
 * [Async](https://github.com/caolan/async) -Async utilities for node and the browser
 * [Select2](https://github.com/select2/select2) - Créer de puissant selecteurs
 * [Slick](https://github.com/kenwheeler/slick) - Un carrousel complet et puissant
@@ -40,7 +46,6 @@
 * [FastClick](https://github.com/ftlabs/fastclick) - Elimate the 300ms delay on clic touch UI
 * [VideoJS](https://github.com/videojs/video.js) - Playing video on HTML5
 * [LetsChat](https://github.com/sdelements/lets-chat) - Create Small chat for team
-* [Phaser](https://github.com/photonstorm/phaser) - Create game in javascript
 * [Immutalbe](https://github.com/facebook/immutable-js) - Use imutable data
 * [Json Server](https://github.com/typicode/json-server) - create API REST easily
 * [Clipboard](https://github.com/zenorocha/clipboard.js) - Copy and Paste without flash
