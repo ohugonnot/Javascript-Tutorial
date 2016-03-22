@@ -151,7 +151,8 @@ Analysons les paramètres :
 L'utilisation de $watch est très puissante et je vous encourage vivement à l'utiliser, mais attention aux performances qui peuvent parfois se dégrader. 
 
 ### LES DIRECTIVES
-     
+[https://docs.angularjs.org/guide/directive](https://docs.angularjs.org/guide/directive)    
+
 **Les directives sont utilisées lorsque l'on souhaite modifier ou transformer le DOM (Document Object Model).**     
      
 Angular fournit un certain nombre de directives. Rappelons-en quelques-unes :
@@ -199,3 +200,187 @@ myModule.directive('namespaceDirectiveName', function factory(injectables) {
     return directiveDefinitionObject; 
 });
 ````
+     
+__restrict__ (Optionnel)          
+Permet de définir comment la déclaration de la directive doit se faire dans le code HTML. Les                                 options sont :     
+     
+````
+    'E' pour element. Exemple : <my-loading title="Paramètres">...</my-loading> 
+    'A' pour attribut. Exemple : <div my-loading="Paramètres">...</div> 
+    'C' pour classe. Exemple : <div class="my-loading:Paramètres">...</div> 
+    'M' pour commentaires. Exemple : <!-- directive: my-loading Paramètres --> 
+````
+     
+__priority__ (Optionnel)     
+Dans le cas où, sur un même élément, vous auriez plusieurs directives, il est possible d'accorder une priorité à une directive. Les priorités hautes s'exécutent en premier. La valeur par défaut est 0.
+     
+__templates__ (Optionnel)     
+Permet de remplacer le contenu d'un élément par un template. Cela est par exemple utile lorsque vous développez un système d'onglets. Au lieu d'écrire l'ensemble de votre code au sein d'une seule page HTML dans laquelle vous allez poser tout un ensemble de conditions, vous pouvez juste déclarer un template pour chaque onglet.      
+Cette option requiert que vous passiez le template de façon "inline", c'est à dire que vous fournissiez une chaîne de caractère avec les balises HTML.
+
+__templateUrl__ (Optionnel)     
+Cette option permet de charger un template depuis un fichier.     
+     
+__replace__ (Optionnel)      
+Si vrai, remplace l'élément. Si faux ou non-spécifié, ajoute la directive à l'élément courant.      
+     
+__transclude__ (Optionnel)    
+Au lieu de remplacer ou ajouter du contenu, vous pouvez aussi déplacer le contenu original à l'intérieur du nouveau template grâce à cette propriété. Si définie à true, la directive supprimera le contenu original et le rendra disponible pour le réinsérer à l'intérieur du template en utilisant la directive ng-transclude.       
+      
+__scope___ (Optionnel)    
+Créer un nouveau contexte au lieu d'hériter du contexte du parent. Trois options s'offrent à vous lorsque vous souhaitez avoir un contexte. Soit :     
+* Vous utilisez le contexte existant qui est celui dans lequel évolue votre directive (valeur par défaut).       
+* Vous définissez un nouveau contexte qui va hériter du contexte du parent (en l'occurrence le contrôleur qui encapsule votre directive).      
+* Vous créez un contexte isolé qui n'hérite pas des propriétés du contexte du parent à moins que vous spécifiiez les attributs dont vous voulez hériter.         
+      
+````
+    contexte existant : scope : false 
+    nouveau contexte : scope : true 
+    contexte isolé : scope: { attributeName1: 'BINDING STRATEGIE',...} 
+````
+     
+     
+La stratégie de binding est définie selon trois symboles :     
+     
+````
+    @  : Passer l'attribut sous forme de chaîne de caractères.
+    =   : Utiliser le data-binding afin de lier la propriété à la propriété du parent.
+    &  : Passer une fonction depuis le parent qui sera exécutée plus tard.
+````
+      
+__controller__ (Optionnel)     
+     
+Créer un contrôleur. Cela s'avère utile notamment lorsque vous avez plusieurs directives que vous voulez faire communiquer. On peut facilement imaginer qu'un menu ait besoin de connaître les items qu'il comporte pour pouvoir afficher ou cacher les bons éléments !      
+      
+__require__ (Optionnel)     
+Indique qu'une autre directive est requise pour que celle-ci fonctionne correctement     
+      
+##### Les fonctions compile  et link
+     
+Il s'agit des fonctions qui vont être utilisées dans le processus de manipulation du DOM, ajout de listeners...     
+     
+Afin de comprendre le fonctionnement de ces deux fonctions, étudions de plus près le processus d'initialisation utilisé par Angular. Ce processus se fait en 3 étapes :     
+     
+1. __Chargement__ : Angular charge et recherche la directive ng-app.
+2. __Compilation__ : au cours de cette phase, Angular parcourt le DOM afin d'identifier l'ensemble des directives. Il s'occupe notamment des manipulations du DOM qui ne requièrent pas l'utilisation du contexte.
+3. __Mise en place des liens__ : il s'agit de la dernière phase. C'est notamment au cours de celle-ci qu'Angular se charge de lier un contexte à la directive.      
+      
+Vous avez donc accès au contexte seulement dans les fonctions link  et non dans les fonctions compile.     
+Les fonctions compile ne sont appelées qu'une seule fois alors que les fonctions link sont appelées plusieurs fois, une fois pour chaque instance de la direct    
+      
+* Ai-je besoin d'utiliser le contexte ? Si oui, utilisez la fonction link. Sinon, utilisez la fonction compile.       
+* Faites-vous des manipulations du DOM ? Si oui et que vous n'avez pas besoin du contexte, utilisez compile, sinon, utilisez link.      
+     
+
+Voici donc le code HTML :     
+````html
+<div ng-app="app">
+    <div ng-controller="SomeController">
+        <expander class="expander" expander-title="title">
+            {{text}}
+        </expander>
+    </div>
+</div>
+```
+
+Appliqué au code JavaScript suivant :     
+````javascript  
+var app = angular.module("app", []);
+app.controller("SomeController", function($scope){
+    $scope.title = "Titre";
+    $scope.text = "Contenu";
+});
+
+app.directive("expander", function(){
+    return {
+        restrict: 'EA',
+        replace: true,
+        transclude: true,
+        scope: {title: '=expanderTitle'},
+        template: '<div>' +
+        '<div class="title" ng-click="toggle()">{{title}}</div>' +
+        '<div class="body" ng-show="showMe" ng-transclude></div>' +
+        '</div>',
+        link: function(scope, element, attrs){
+            scope.showMe = false;
+            scope.toggle = function toggle(){
+                scope.showMe = !scope.showMe;
+            };
+        }
+    };
+});
+```
+
+### LES SERVICES    
+Ce sont des singletons, c'est-à-dire des instances uniques d'objets. Le rôle d'un service est de fournir un ensemble de tâches nécessaires au fonctionnement de votre application.     
+      
+      
+Comme pour les directives, Angular fournit déjà des services très utiles comme :
+* __$location__ : interagir avec l'URL de votre navigateur.
+* __$route__ : changer de vue en fonction de l'URL.
+* __$http__ : communiquer avec les serveurs.
+* 
+
+* __Factory__
+
+````javascript  
+app.factory("factoryExample", function(){
+    return{
+        service1: function(){...},
+        service2: function(){...},
+    }
+});
+
+app.controller("factoryCtrl", function($scope, factoryExample){
+     factoryExample.service1();
+});
+```
+     
+Lorsque vous créez une factory, vous avez la responsabilité de retourner un objet qui possède un certain nombre d'utilitaires qui assurent vos services.    
+
+* __Service__
+
+````javascript  
+app.service("serviceExample", function(){
+    this.service1 = function(){...};
+    this.service2 = function(){...};
+});
+
+app.controller("serviceCtrl", function($scope, serviceExample){
+     serviceExample.service1();
+});
+```  
+      
+Lorsque vous utilisez le service, il s'agit d'une instance du service qui est passée au contrôleur. Vous n'avez donc pas la responsabilité de retourner une valeur dans votre service. Il vous suffit d'attacher vos fonctions et attributs à this.     
+       
+* __Provider__    
+C'est sans aucun doute la solution la plus compliquée mais également la solution la plus "configurable".  L'intérêt d'utiliser un provider est que vous avez la possibilité de le configurer à l'exécution. Voici donc un exemple :      
+    
+````javascript  
+app.provider("greeter", function(){
+    var salutation = "Hello";
+    this.setSalutation = function(_salutation){
+        salutation = _salutation;
+    };
+
+    function Greeter(){
+        this.greet = function(){
+            return salutation;   
+        };
+    };
+    
+    this.$get = function(){
+        return new Greeter();
+    };
+});
+
+var app = angular.module("app", []).config(function(greeterProvider){
+    greeterProvider.setSalutation("Bonjour");  
+});
+
+app.controller("providerCtrl", function($scope, greeter){
+     console.log(greeter.greet());
+});
+```
+      
+Remarquez que nous configurons notre service avant de l'utiliser. Lorsque notre contrôleur demande une instance de greeter, c'est la fonction $get qui est exécutée. 
