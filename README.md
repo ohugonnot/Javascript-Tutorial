@@ -2,12 +2,13 @@
 
 1. JavaScript, les bases. **[Lien](JavaScript.md)**
 2. JQuery. **[Lien](JQuery.md)**
-3. Fonctional programming, UnderscoreJS **[Lien](Fonctional.md)**
+3. Fonctional programming, UnderscoreJS. **[Lien](Fonctional.md)**
 4. NodeJS & Express. **[Lien](NodeJS.md)**
-5. AngularJS. **[Lien](AngularJS.md)**
-6. Meteor. **[Lien](Meteor.md)**
-7. React. **[Lien](React.md)**
-8. JSHint, JSLint, JSPerf    
+5. AngularJS v1. **[Lien](AngularJS.md)**
+7. Angular 2. **[Lien](AngularJS2.md)**
+8. Meteor. **[Lien](Meteor.md)**
+9. React. **[Lien](React.md)**
+10. JSHint, JSLint, JSPerf.    
 
 #### Les liens utiles
 
