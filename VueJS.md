@@ -16,11 +16,9 @@ https://vuejs.org/
 5.2 Replacing an Array    
 5.3 Caveats    
 6. [Computed Properties et Watchers](#computed)   
-[Composing with Components](#compenent)   
 
      
-     
-## <a name="Installation"></a> Installation
+## <a name="Installation"></a>1. Installation
 
 Insérer dans le head ou le body
 
@@ -28,7 +26,7 @@ Insérer dans le head ou le body
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 ```
 
-## <a name="Déclaration"></a> Déclaration
+## <a name="Déclaration"></a>2. Déclaration
 
 
 ```html
@@ -57,20 +55,28 @@ var app = new Vue({    // options
   computed: {                     // Liste des propriétés computed
       value: function() {
       }
+  },
+  watch: {
+      value: function () {
+      }
+  },
+  created: function() {
+  },
+  mounted: function() {
   }
 })
 ```
 
-## <a name="cycle"></a>Cycle de vie de l'instance
+## <a name="cycle"></a>3. Cycle de vie de l'instance
 
 <img src='https://vuejs.org/images/lifecycle.png' alt='vueJS' />
 
 
 
-## <a name="directives"></a>Interpolations et Directives
+## <a name="directives"></a>4. Interpolations et Directives
 
-### Binder les données 
-* texte & html => __[[ var ]]__  ou __v-html__
+### 4.1 Binder les données 
+* __[[ var ]]__, __v-html__
 ```html
 <div id="app">
      <span v-once> [[ message ]]</span>
@@ -79,7 +85,7 @@ var app = new Vue({    // options
 ```
 Si la value ne doit être interpreté qu'une fois __v-once__
 
-* attribut =>  __v-bind:__ ou __:__
+#### attribut =>  __v-bind:__
 
 ```html
 <div id="app">
@@ -91,19 +97,19 @@ Il est possible de rajouter du javascript dans la valeur de l'attribut
 <div v-bind:id="'list-' + id"></div>
 ```
 
-Ou de bindé du style ou des class avec des objets et des boolean
+Ou de binder du style ou des class avec des objets, des array ou des boolean
 ```html
 <div class="static"
      v-bind:class="{ active: isActive, 'text-danger': hasError }">
 </div>
-  =>
-<div class="static active"></div>
 ```
 
-* input => avec __v-model="var"__
+#### input => __v-model__
 ```html
+// Input type Text ou TextAera
 <input type="text" v-model="message">
 
+// Checkbox True/False  or Value
 <input type="checkbox" id="checkbox" v-model="checked"  v-bind:true-value="a" v-bind:false-value="b">
 <label for="checkbox">{{ checked }}</label>
 
@@ -113,21 +119,23 @@ Ou de bindé du style ou des class avec des objets et des boolean
 <label for="john">John</label>
 <span>Checked names: {{ checkedNames }}</span>
 
+// Radio True/False  or Value
 <input type="radio" id="one" value="One" v-model="picked">
 <label for="one">One</label>
 <input type="radio" id="two" v-model="picked" v-bind:value="Two">
 <label for="two">Two</label>
 <span>Picked: {{ picked }}</span>
 
+// Select avec bind:value
 <select v-model="selected">
   <option v-for="option in options" v-bind:value="option.value">
     {{ option.text }}
   </option>
 </select>
+<span>Selected: {{ selected }}</span>
 ```
 
 ```javascript
-<span>Selected: {{ selected }}</span>
 new Vue({
   el: '...',
   data: {
@@ -142,26 +150,26 @@ new Vue({
 ```
 #### Modifiers
 
-* __.lazy__
+####  __.lazy__
 By default, v-model syncs the input with the data after each input event (with the exception of IME composition as stated above). You can add the lazy modifier to instead sync after change events:
 ```html
 <input v-model.lazy="msg" >
 ```
 
-* __.number__
+#### __.number__
 If you want user input to be automatically typecast as a number, you can add the number modifier to your v-model managed inputs:
 ```html
 <input v-model.number="age" type="number">
 ```
 
-* __.trim__
+#### __.trim__
 If you want user input to be trimmed automatically, you can add the trim modifier to your v-model managed inputs:
 ```html
 <input v-model.trim="msg">
 ```
 
-### Les conditions et les boucles
-* __v-if__, __v-else__, __v-else-if__
+### 4.2 Les conditions et les boucles
+#### __v-if__, __v-else__, __v-else-if__
 ```html
 <div id="app">
   <span v-if='success'>Success</span>
@@ -181,7 +189,7 @@ Il est possible de réutiliser un éléments avec sa KEY
 </template>
 ```
 
-* __v-show__
+####  __v-show__
 ```html
 <div id="app">
   <span v-show='success'>Success</span>
@@ -189,7 +197,7 @@ Il est possible de réutiliser un éléments avec sa KEY
 ```
 La différence entre __v-show__ et __v-if__ c'est que v-show correspond à display:none alors que v-if remove l'element du dom
 
-* __v-for__
+####  __v-for__
 ```html
 <div id="app">
      <ul>
@@ -203,7 +211,7 @@ La différence entre __v-show__ et __v-if__ c'est que v-show correspond à displ
 </div>
 ```
 
-### Les evenements
+### 4.3 Les evenements
 * __v-on__ ou __@__    
 <ul> 
      <li><code>abort</code></li>
@@ -288,7 +296,7 @@ Pour les combinaison de touches
 ```
 
 
-### Les Filtres
+### 4.4 Les Filtres
 
 ```html
 <!-- in mustaches -->
@@ -314,7 +322,7 @@ new Vue({
 })
 ```
 
-### <a name="arrayChange"></a> Array Change Detection
+### <a name="arrayChange"></a>5.1 Array Change Detection
 
 #### Mutation Methods    
 Il faut utiliser du fonctionnal programming sur les array et les objets de vue pour maintenir le binding et propager la mutation.    
