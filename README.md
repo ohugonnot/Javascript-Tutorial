@@ -4,7 +4,8 @@
 2. JQuery. **[Lien](JQuery.md)**
 3. Fonctional programming, UnderscoreJS. **[Lien](Fonctional.md)**
 4. NodeJS & Express. **[Lien](NodeJS.md)**
-5. VueJS v2. **[Lien](VueJS.md)**
+5. VueJS v2 - Les bases. **[Lien](VueJS.md)**
+5. VueJS v2 - Les Web competnents. **[Lien](VueJSCompenent.md)**
 7. Angular 2. **[Lien](AngularJS2.md)**
 8. Meteor. **[Lien](Meteor.md)**
 9. React. **[Lien](React.md)**
