@@ -12,8 +12,12 @@ https://vuejs.org/
 4.3 Les evenements
 4.4 Les Filtres
 5. [Array Change Detection](#arrayChange)   
-6. [Computed Properties et Watchers](#computed)   
-
+5.1 Mutation Methods    
+5.2 Replacing an Array       
+5.3 Caveats      
+6. [Computed Properties et Watchers](#computed)      
+6.1 Computed Properties   
+6.2 Watched Property   
      
 ## <a name="Installation"></a>1. Installation
 
@@ -58,7 +62,7 @@ var app = new Vue({    // options
       }
   },
   created: function() {
-  },
+  },  
   mounted: function() {
   }
 })
@@ -321,7 +325,7 @@ new Vue({
 
 ### <a name="arrayChange"></a>5. Array Change Detection
 
-#### Mutation Methods    
+#### 5.1 Mutation Methods    
 Il faut utiliser du fonctionnal programming sur les array et les objets de vue pour maintenir le binding et propager la mutation.    
 Les fonctions à utiliser :    
 <ul>
@@ -334,14 +338,14 @@ Les fonctions à utiliser :
 <li><code>reverse()</code></li>
 </ul>
 
-#### Replacing an Array
+#### 5.2 Replacing an Array
 <ul>
 <li><code>filter()</code></li>
 <li><code>concat()</code></li>
 <li><code>slice()</code></li>
 </ul>
 
-#### Caveats
+#### 5.3 Caveats
 
 Ce n'est pas possible de garder le binding sur ces deux fonctions à éviter
 ```javascript
@@ -357,9 +361,9 @@ A la place il faut utiliser
 ```
 
 
-## <a name="computed"></a>Computed Properties et Watchers
+## <a name="computed"></a>6. Computed Properties et Watchers
 
-### 6. Computed Properties   
+### 6.1 Computed Properties   
 
 Quand une variable dépends de la valeur d'une autre, il faut computed la value.
 ```html
@@ -424,7 +428,7 @@ computed: {
 }
 ```
 
-### Watched Property   
+###  6.2 Watched Property   
 
 Si on doit oberserver les changements d'une valeur on peut également utiliser un watcher. Mais c'est souvent une meilleurs idée d'utiliser une computed properties plutot qu'un callback sur un watcher. Surtout __quand une variable dépends de plusieurs autres__     
      
