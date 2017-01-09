@@ -11,10 +11,7 @@ https://vuejs.org/
 4.2 Les conditions et les boucles  
 4.3 Les evenements
 4.4 Les Filtres
-5. [Array Change Detection](#arrayChange)  
-5.1 Mutation Methods      
-5.2 Replacing an Array    
-5.3 Caveats    
+5. [Array Change Detection](#arrayChange)   
 6. [Computed Properties et Watchers](#computed)   
 
      
@@ -322,7 +319,7 @@ new Vue({
 })
 ```
 
-### <a name="arrayChange"></a>5.1 Array Change Detection
+### <a name="arrayChange"></a>5 Array Change Detection
 
 #### Mutation Methods    
 Il faut utiliser du fonctionnal programming sur les array et les objets de vue pour maintenir le binding et propager la mutation.    
