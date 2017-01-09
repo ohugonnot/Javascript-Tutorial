@@ -319,7 +319,7 @@ new Vue({
 })
 ```
 
-### <a name="arrayChange"></a>5 Array Change Detection
+### <a name="arrayChange"></a>5. Array Change Detection
 
 #### Mutation Methods    
 Il faut utiliser du fonctionnal programming sur les array et les objets de vue pour maintenir le binding et propager la mutation.    
@@ -359,7 +359,7 @@ A la place il faut utiliser
 
 ## <a name="computed"></a>Computed Properties et Watchers
 
-### Computed Properties   
+### 6. Computed Properties   
 
 Quand une variable dépends de la valeur d'une autre, il faut computed la value.
 ```html
