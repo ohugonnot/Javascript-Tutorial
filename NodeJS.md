@@ -4,8 +4,8 @@ NodeJS
 #### Menu
 1. [Installation de NodeJS & NPM](#installation)
 2. [Des serveurs web et des threads](#serveur)
-3. [Les événements](#evenements)
-3.1 Ecouter des évènements    
+3. [Les événements](#evenements)     
+3.1 Ecouter des évènements      
 3.2 Emettre des évènements    
 4. [Les modules](#modules)     
 4.1 Créer un module    
