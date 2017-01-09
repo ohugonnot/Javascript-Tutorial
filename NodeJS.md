@@ -1,6 +1,21 @@
 NodeJS
 ====
-     
+
+#### Menu
+1. [Installation de NodeJS & NPM](#installation)
+2. [Des serveurs web et des threads](#serveur)
+3. [Les événements](#evenements)
+3.1 Ecouter des évènements    
+3.2 Emettre des évènements    
+4. [Les modules](#modules)     
+4.1 Créer un module    
+4.2 Chercher & Installer un module   
+5. [Farmework EXPRESS.JS](#express)    
+5.1 Install et Route    
+5.2 Templating : Twig    
+5.3 Express et les middlewares   
+6. [SOCKET.IO](#socket)    
+      
 Dans les applications web, il est courant d'avoir des opérations longues et bloquantes comme :     
      
  - Les appels aux bases de données     
@@ -11,7 +26,7 @@ Node.js nous évite de perdre du temps en nous permettant de faire d'autres chos
 <img src='https://user.oc-static.com/files/421001_422000/421164.png' alt='NodeJS' />
 </p>
 
-## 1 - Installation de NodeJS & NPM
+## <a name="installation"></a> 1 - Installation de NodeJS & NPM
 
  * Nouvel Debian 
  
@@ -28,7 +43,7 @@ Node.js nous évite de perdre du temps en nous permettant de faire d'autres chos
      sudo apt-get install nodejs npm
 ````
 
-## 2 - Des serveurs web et des threads
+## <a name="serveur"></a> 2 - Des serveurs web et des threads
 
 Avec Node.js, on n'utilise pas de serveur web HTTP comme Apache. En fait, c'est à nous de créer le serveur !
 
@@ -42,7 +57,7 @@ Avec Node.js, on n'utilise pas de serveur web HTTP comme Apache. En fait, c'est 
   server.listen(8080);
 ````
 
-##  3 - LES ÉVÈNEMENTS
+##  <a name="evenements"></a> 3 - LES ÉVÈNEMENTS
 
 ### 3.1 - Ecouter des évènements
 
@@ -66,7 +81,7 @@ Avec Node.js, on n'utilise pas de serveur web HTTP comme Apache. En fait, c'est 
   jeu.emit('gameover', 'Vous avez perdu !');
 ````
 
-## 4 - Les modules
+## <a name="modules"></a> 4 - Les modules
 
 ### 4.1 - Créer un module
 
@@ -104,7 +119,7 @@ En revanche, elles pourront tout à fait être utilisées par d'autres fonctions
   npm update
 ````
 
-## 5 - LE FRAMEWORK EXPRESS.JS
+## <a name="express"></a> 5 - LE FRAMEWORK EXPRESS.JS
 
 ### 5.1 - Install et Route
 
@@ -207,7 +222,7 @@ http://expressjs.com/guide/using-middleware.html
 * L'ordre d'appel des middlewares est extrêmement important. Par exemple, on commence par activer le logger. Si on le faisait en dernier, on ne loggerait rien !
 Quand vous faites appel aux middlewares, réfléchissez donc à l'ordre, car il peut impacter fortement le fonctionnement de votre application.
 
-## 6 - SOCKET.IO : PASSEZ AU TEMPS RÉEL !
+## <a name="socket"></a> 6 - SOCKET.IO : PASSEZ AU TEMPS RÉEL !
 
 WebSocket est une fonctionnalité supportée par l'ensemble des navigateurs récents. Elle permet un échange bilatéral synchrone entre le client et le serveur.      
 WebSocket est une nouveauté du Web qui permet de laisser une sorte de "tuyau" de communication ouvert entre le client et le serveur. Le navigateur et le serveur restent connectés entre eux et peuvent s'échanger des messages dans un sens comme dans l'autre dans ce tuyau. Désormais, le serveur peut donc lui-même décider d'envoyer un message au client comme un grand !      
