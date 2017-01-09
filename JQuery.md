@@ -1,7 +1,14 @@
 JQuery -- Tutorial
 ========================
+#### Menu
+1. [Les sélecteurs ](#selecteur)
+2. [Modifier le contenu d'un élément](#modifier)
+3. [Insérer du contenu dans un élément](#inserer)
+4. [Les événements](#evenements)
+5. [Les bonnes pratiques](#pratique)
 
-### Les sélecteurs 
+
+### <a name="selecteur"></a> Les sélecteurs 
 
 Le sélecteur jQuery $('sel') utilise la syntaxe CSS. En remplaçant sel par un sélecteur CSS quelconque, les éléments correspondants (s'ils existent) seront sélectionnés dans le DOM.            
 
@@ -62,7 +69,7 @@ $('.rouge').css('background','red').css('color','yellow');.
 
 ------------------------------
 
-### MODIFIER LE CONTENU D'UN ÉLÉMENT
+###  <a name="modifier"></a> MODIFIER LE CONTENU D'UN ÉLÉMENT
 
 * __css(__  *"attr",value* __)__ : modifier le css
 * __attr(__  *"attr",val* __)__ : modifier un attribut
@@ -86,7 +93,7 @@ $('.rouge').css('background','red').css('color','yellow');.
 
 -------------------------------
 
-### INSERE LE CONTENU D'UN ÉLÉMENT
+###  <a name="inserer"></a> INSERER LE CONTENU D'UN ÉLÉMENT
 
 Pour insérer du contenu dans un document, vous utiliserez les méthodes       
 * __append()__
@@ -114,7 +121,7 @@ Les méthodes permettent d'entourer un élément par un ou plusieurs autres él�
 Pour supprimer un élément, vous utiliserez la méthode 
 * __remove()__
 
-### Les évenements
+###  <a name="evenements"></a> Les évenements
 
 
 __Méthode traditionnelle  -> Méthode on() équivalente__   
@@ -148,7 +155,7 @@ $(sel).trigger('ev');
 * Il est possible de définir des événements personnalisés en jQuery, en utilisant la méthode ```on()```. L'événement ainsi créé peut être déclenché avec la méthode ```trigger()```.     
 * La délégation d'événements permet de cloner la gestion événementielle d'un élément à un ou plusieurs de ses enfants créés à la volée dans le code jQuery. Peu importe le nombre d'éléments créés : ils se comporteront tous (d'un point de vue événementiel) comme leur parent. Et ce, sans qu'aucun code supplémentaire ne soit écrit.      
 
-## Les bonnes pratiques avec JQUERY
+##  <a name="pratique"></a> Les bonnes pratiques avec JQUERY
 
 Prefixez vos variables d'objets jQuery avec un $.
 
