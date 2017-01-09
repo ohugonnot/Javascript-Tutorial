@@ -7,10 +7,10 @@ https://vuejs.org/
 2. [Déclaration](#Déclaration)
 3. [Cycle de vie de l'instance](#cycle)
 4. [Interpolations & Directives](#directives)    
-4.1 Binder les données   
-4.2 Les conditions et les boucles  
-4.3 Les evenements
-4.4 Les Filtres
+4.1 Binder les données     
+4.2 Les conditions et les boucles      
+4.3 Les evenements        
+4.4 Les Filtres        
 5. [Array Change Detection](#arrayChange)   
 5.1 Mutation Methods    
 5.2 Replacing an Array       
