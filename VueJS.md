@@ -44,11 +44,11 @@ var app = new Vue({    // options
     message: 'Hello',      // string
     succcess: true,        // boolean
     style: {color: black}  // object
-  }
+  },
   methods: {                       // Liste de méthodes
     action: function() {
     }
-  }
+  },
   filters: {                      // Liste de filtres
      filter: function() {
      }
