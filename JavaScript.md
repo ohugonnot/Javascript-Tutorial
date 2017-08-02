@@ -3,6 +3,7 @@ Javascript-Tutorial
 https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/
 
 #### Menu
+0. [Les types](#types)
 1. [Les Fonctions](#fonctions)
 2. [Les Objets](#objets)
 3. [Les Tableaux](#tableaux)
@@ -14,8 +15,9 @@ https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/
 9. [Sets](#sets)
 10. [Bad Parts](#bad)
 11. [Good Parts](#good)
+12. [ES6 & ES7](#es6)
 
-#### Les Types
+#### <a name="types"></a> Les Types
 * Les nombres : **Number**
 * Les chaînes de caractères : **String**
 * Les booléens : **Boolean**
@@ -896,4 +898,58 @@ A set is a **collection of unique elements**. The elements of a set are called m
 	function sayHi(name) {
 	  return `How are you, ${name}?`;
 	}
+```
+
+## <a name="ES6"></a>12 - ESscript6
+
+* Template string ``
+```javascript
+	`${code javascript} `
+```
+* fonctions flechés
+```javascript
+		([param] [, param]) => {
+		   instructions
+		}
+
+		(param1, param2, …, param2) => expression
+		// équivalent à 
+		(param1, param2, …, param2) => {
+		  return expression;
+		}
+
+		// Parenthèses non nécessaires quand il n'y a qu'un seul argument
+		param => expression
+
+		// Une fonction sans paramètre peut s'écrire avec un couple 
+		// de parenthèses
+		() => { instructions }
+```
+* destructuring et Spreed Operator **...**
+```javascript
+	// Gestion de la décomposition pour la liste des paramètres
+	let f = ([a, b] = [1, 2], {x: c} = {x: a + b}) => a + b + c;
+	f();  
+	
+	[a, b] = [1, 2];
+	[a, b, ...c] = [1, 2, 3, 4, 5];
+	({a, b} = {a:1, b:2});
+
+	// En cours de spécification (proposition de 
+	// niveau 3)
+	({a, b, ...rest} = {a:1, b:2, c:3, d:4});	
+```
+
+
+## <a name="ES7"></a> ESscript7
+* les puissances
+```javascript
+   var puissance = 3 ** 4;
+
+```
+* includes
+```javascript
+	var a = [1, 2, 3]
+	a.includes(2); // true
+	a.includes(4); // false
 ```
