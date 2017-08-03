@@ -16,6 +16,7 @@ https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/
 10. [Bad Parts](#bad)
 11. [Good Parts](#good)
 12. [ES6 & ES7](#es6)
+13. [Les events](#events)
 
 #### <a name="types"></a> Les Types
 * Les nombres : **Number**
@@ -941,7 +942,7 @@ A set is a **collection of unique elements**. The elements of a set are called m
 ```
 
 
-## <a name="ES7"></a> ESscript7
+### <a name="ES7"></a> ESscript7
 * les puissances
 ```javascript
    var puissance = 3 ** 4;
@@ -953,3 +954,21 @@ A set is a **collection of unique elements**. The elements of a set are called m
 	a.includes(2); // true
 	a.includes(4); // false
 ```
+
+## <a name="events"></a>13 - Les events
+
+* __addEventListener__
+```javascript
+	const lien = document.querySelector("a");
+	const liens = document.querySelector("a");
+	liensArray = Array.from(images);
+	
+	lien.addEventListener("click",function(e) {} );
+	addEventListener("event",f(e))  // ecoute l'ensemble du DOM
+```
+
+* __removeEventListener__
+```javascript
+	lien.removeEventListener("click", function(e) {} );
+```
+* La liste des Events -> https://developer.mozilla.org/en-US/docs/Web/Events
