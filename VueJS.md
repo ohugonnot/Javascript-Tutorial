@@ -266,6 +266,7 @@ Il est possible de modifier l'event à la volée
 <li><code>.self // only trigger handler if event.target is the element itself</code></li>
 <li><code>.once  // ne s'applique qu'une fois</code></li>
 </ul>
+
 ```html
 <!-- modifiers can be chained -->
 <a v-on:click.stop.prevent="doThat"></a>
