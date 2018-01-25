@@ -9,7 +9,7 @@ https://vuejs.org/
 1.3 [__data__ Must Be a Function](#data)        
 1.4 [Composing Components](#compose)     
 2. [Les propriétés](#props)     
-2.1 [Passing Data with Props](#compose)     
+2.1 [Passing Data with Props](#Passing)     
 2.2 [camelCase vs. kebab-case](#camelCase)     
 2.3 [Dynamic Props](#Dynamic)     
 2.4 [Literal vs Dynamic](#Literal)     
@@ -161,7 +161,7 @@ Vue.component('child', {
 
 ### <a name="Dynamic"></a>2.3 Dynamic Props
 
-On peut utiliser v-bind pour binder une dynamiquement une prop. Quand le data est mis à jour dans le parents il est transmi automatiquement a l'enfant.
+On peut utiliser v-bind pour binder dynamiquement une prop. Quand le data est mis à jour dans le parents il est transmi automatiquement a l'enfant.
 
 ```html
 <div>
@@ -178,7 +178,7 @@ Une erreur commune chez les débutants et de passer une prop en utilisant la syn
 <!-- this passes down a plain string "1" -->
 <comp some-prop="1"></comp>
 ```
-La valeur passer est un string "1" si on veut passer un nombre, il faut ajouter __v-bind__ pour que la valeur soit évaluer comme une expression javascript.
+La valeur passer est un string "1" si on veut passer un nombre, il faut ajouter __v-bind__ ou __:__ pour que la valeur soit évaluer comme une expression javascript.
 
 ```html
 <!-- this passes down an actual number -->
@@ -187,20 +187,31 @@ La valeur passer est un string "1" si on veut passer un nombre, il faut ajouter 
 
 ### <a name="Flow"></a>2.5 One-Way Data Flow
 
-Il s'agit d'un One-way Data Flow, les props sont binder du parent vers l'enfant. Quand le parent est MAJ c'est transmis automatiquement à l'enfant, mais pas dans l'autre sens. Cela empèche l'enfant de corrompre le parent.      
+<img src='https://fr.vuejs.org/images/props-events.png' alt='vueJS' />
+
+Toutes les props forment une liaison descendante unidirectionnelle entre la propriété de l’enfant et celle du parent : quand la propriété parente est mise à jour, cela est signalé à l’enfant, mais pas dans l’autre sens. Cela empêche les composants enfants de modifier accidentellement l’état du parent, ce qui rendrait le flux de données de votre application difficile à appréhender.        
+      
+De plus, chaque fois que le composant parent est mis à jour, toutes les props dans le composant enfant vont être rafraichies avec les dernières valeurs. Cela signifie qu’il ne faut pas essayer de changer une prop à l’intérieur d’un composant enfant. Si vous le faites, Vue vous avertira dans la console.       
+       
+Il y a habituellement deux cas où il est tentant de changer une prop :        
+* La prop est utilisée uniquement pour passer une valeur d’initialisation. Le composant enfant veut simplement l’utiliser par la suite comme une propriété de donnée locale à partir de ce moment.         
+* La prop est passée comme une valeur brute qui doit être transformée.       
         
-Quand un parents est MAJ toutes les props de l'enfant sont MAJ. On ne peut donc pas modifier une seule prop d'un enfant.     
-Il existe deux raison principale d'envoyer une prop a un enfant     
+        
+Les réponses correctes pour ces cas d’utilisation sont :        
 
-* La prop est utilisé seulement pour passer la veleur initiale, et l'enfant veut l'utiliser comme une simple propriétés locale;
-* La prop est basée sur une raw et à besoin d'etre transformé.
-
+Définir une propriété de donnée locale qui utilise la valeur initiale de la prop comme une valeur d’initialisation :      
+        
 ```javascript
 props: ['initialCounter'],
 data: function () {
   return { counter: this.initialCounter }
 }
-// Avec transformation
+```      
+      
+Définir une propriété calculée qui est calculée à partir de la valeur de la prop :            
+       
+```javascript
 props: ['size'],
 computed: {
   normalizedSize: function () {
@@ -208,10 +219,10 @@ computed: {
   }
 }
 ```
-
+      
 ### <a name="Validation"></a>2.6 Prop Validation
 
-Instead of defining the props as an array of strings, you can use an object with validation requirements:
+Si on veut respecter les bonnes pratiques il faut déclarer les props comment un objet avec le hint des différentes props.
 
 ```javascript
 Vue.component('example', {
@@ -257,10 +268,10 @@ Vue.component('example', {
 ## <a name="Custom"></a>3. Custom Events
 
 ### <a name="Events"></a>3.1 Using v-on with Custom Events
-
-* Listen to an event using $on(eventName)
-* Trigger an event using $emit(eventName)
-
+          
+* Ecouter un évenement en utilisant __$on(eventName)__  chez le parent      
+* Envoyer un évenement en utilisatant __$emit(eventName)__ chez l'enfant       
+               
 ```html
 <div id="counter-event-example">
   <p>{{ total }}</p>
