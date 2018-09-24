@@ -53,15 +53,15 @@ var app = new Vue({    // options
      filter: function() {
      }
   },
-  computed: {                     // Liste des propriétés computed
+  computed: {                     // Liste des propriétés computed (créer une propriété qui depends d'autres)
       value: function() {
       }
   },
-  watch: {
+  watch: {                        // Liste des propriétés qui sont écouté (utile pour les requetes async)
       value: function () {
       }
   },
-  created: function() {
+  created: function() {          // Tous les Cycles de vie sont accéssibles
   },  
   mounted: function() {
   }
@@ -76,17 +76,41 @@ var app = new Vue({    // options
 
 ## <a name="directives"></a>4. Interpolations et Directives
 
+### Astuce pour manager les templates
+
+* __<template></template>__ 
+```html
+// la balise vuejs template permet d'englober du code pour les v-if ou les for
+// la balise n'apparait pas dans le dom, elle permet juste de wrapper proprement
+<template v-if>
+     <h1></h1>
+     <p></p>
+</template>
+```
+
+* __$ref__ 
+```html
+// on peut placer un attribut ref dans le template
+<p ref="description"></p>
+
+// il est ensuite accessible dans le javascript dans $ref
+this.$ref.description
+
+// cela permet d'avoir accès à certain noeud du dome directement sans selecteur Jquery
+```
+
 ### 4.1 Binder les données 
 * __[[ var ]]__, __v-html__
 ```html
 <div id="app">
+     // v-once affiche une fois et n'écoute plus les changements
      <span v-once> [[ message ]]</span>
      <span v-html="messageHTML"></span>
 </div>
 ```
 Si la value ne doit être interpreté qu'une fois __v-once__
 
-#### attribut =>  __v-bind:__
+* attribut =>  __v-bind:__
 
 ```html
 <div id="app">
@@ -105,8 +129,9 @@ Ou de binder du style ou des class avec des objets, des array ou des boolean
 </div>
 ```
 
-#### input => __v-model__
+* input => __v-model__
 ```html
+// v-model équivent a un v-bind:input + v-on:input $event
 // Input type Text ou TextAera
 <input type="text" v-model="message">
 
@@ -240,7 +265,7 @@ La différence entre __v-show__ et __v-if__ c'est que v-show correspond à displ
 ```javascript
  methods: {
     greet: function (event) {
-      // `this` inside methods points to the Vue instance
+      // par defaut le event est le premier argument du fonction v-on
       alert('Hello ' + this.name + '!')
       // `event` is the native DOM event
       alert(event.target.tagName)
