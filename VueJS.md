@@ -18,7 +18,9 @@ https://vuejs.org/
 6. [Computed Properties et Watchers](#computed)      
 6.1 Computed Properties   
 6.2 Watched Property   
-     
+7. [Directives](#directives)      
+8. [Mixins](#mixins)      
+      
 ## <a name="Installation"></a>1. Installation
 
 Insérer dans le head ou le body
@@ -64,7 +66,12 @@ var app = new Vue({    // options
   created: function() {          // Tous les Cycles de vie sont accéssibles
   },  
   mounted: function() {
-  }
+  },
+  compenents: {
+  },
+  directives: {
+  },
+  mixin: []
 })
 ```
 
@@ -100,6 +107,19 @@ this.$ref.description
 ```
 
 ### 4.1 Binder les données 
+     
+Les directives vuejs prennent un argument (optionnel), un ou plusieurs modificateur (optionnel) et une valeur.
+```html
+v-directive:argument.modificateur="valeur"
+
+// exemples
+v-on:click.prevent='onClickFunction'
+v-bind:href='url'
+
+// les valeurs sont interpretées en tant que javascript
+v-if='(1+1)'
+```
+
 * __[[ var ]]__, __v-html__
 ```html
 <div id="app">
@@ -203,7 +223,7 @@ If you want user input to be trimmed automatically, you can add the trim modifie
   <span v-else>Error</span>
 </div>
 ```
-Il est possible de réutiliser un éléments avec sa KEY
+Il est possible de réutiliser un éléments avec sa KEY ou d'éviter la réutilisation
 ```html
 <template v-if="loginType === 'username'">
   <label>Username</label>
@@ -381,6 +401,7 @@ Ce n'est pas possible de garder le binding sur ces deux fonctions à éviter
 A la place il faut utiliser
 ```javascript
      Vue.set(example1.items, indexOfItem, newValue)
+     vm.$set(vm.items, indexOfItem, newValue)
      // ou
      example1.items.splice(indexOfItem, 1, newValue)
      example1.items.splice(newLength)
@@ -488,3 +509,97 @@ var vm = new Vue({
   }
 })
 ```
+
+## <a name="directives"></a> 7. Directives 
+
+Vuejs permet de créer ses propres diréctives.       
+2 choses importantes à savoir       
+- L'element : qui represente l'élement dans le dom ou est posé la directive       
+- Le binding : qui permet d'accéder aux modifiers .action et a la value __v-directive:arg.modifier="value"__       
+        
+```html
+<div v-highlight:background.delayed></div>
+```
+
+```javascript
+Vue.directive('highlight', {
+    bind(el, binding, vnode) {
+        var delay = 0;
+        if (binding.modifiers['delayed']) {
+            delay = 3000;
+        }
+        if (binding.modifiers['blink']) {
+            let mainColor = binding.value.mainColor;
+            let secondColor = binding.value.secondColor;
+            let currentColor = mainColor;
+            setTimeout(() => {
+                setInterval(() => {
+                    currentColor == secondColor ? currentColor = mainColor : currentColor = secondColor;
+                    if (binding.arg == 'background') {
+                        el.style.backgroundColor = currentColor;
+                    } else {
+                        el.style.color = currentColor;
+                    }
+                }, binding.value.delay);
+            }, delay);
+        } else {
+            setTimeout(() => {
+                if (binding.arg == 'background') {
+                    el.style.backgroundColor = binding.value.mainColor;
+                } else {
+                    el.style.color = binding.value.mainColor;
+                }
+            }, delay);
+        }
+    }
+});
+```
+
+## <a name="mixins"></a> 8. Mixins
+
+
+- Les mixins permettent de factoriser du code. C'est comme un trait en php. Sachant que le mixing et merger avec l'instance vue en premier donc il n'overide aucune value. Cela permet de rajouter des comportements commun à plusieurs instance.
+
+
+```javascript
+// Mixin global à utiliser avec précaution sera ajouter dans toutes les instances
+Vue.mixin({
+    created() {
+        console.log('Global Mixin - Created Hook');
+    }
+});
+
+
+// Local mixin en ES6 avec Webpack Encore
+    import { fruitMixin } from './fruitMixin';
+
+    export default {
+        mixins: [fruitMixin],
+    }
+    
+// Mixin Local standard
+var mixin = {
+  data: function () {
+    return {
+      message: 'bonjour',
+      foo: 'abc'
+    }
+  }
+}
+
+new Vue({
+  mixins: [mixin],
+  data: function () {
+    return {
+      message: 'au revoir',
+      bar: 'def'
+    }
+  },
+  created: function () {
+    console.log(this.$data)
+    // => { message: "au revoir", foo: "abc", bar: "def" }
+  }
+})
+
+```
+
