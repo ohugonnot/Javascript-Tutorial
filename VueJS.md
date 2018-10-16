@@ -1,6 +1,11 @@
 VueJS-Tutorial 
 ======================
-https://vuejs.org/
+Documentation : https://vuejs.org/       
+Vuejs + symfony workflow : https://www.cloudways.com/blog/symfony-vuejs-app/     
+Build Symfony 4 CRUD app : https://www.youtube.com/watch?v=qe1t91bXRiQ       
+Vuejs + Symfony SAP : https://digitalfortress.tech/tutorial/symfony-vue-js-integration/      
+Vuejs + Symfony4 + docker + vuex + vuerouter : https://thecodingmachine.io/building-a-single-page-application-with-symfony-4-and-vuejs     
+Symfony 4 + Vuejs + simple intall : https://medium.com/@gu.bordes/workeet-app-part-1-symfony-est-ton-ami-a77d28d1bba        
 
 ### Menu
 1. [Installation](#Installation)
