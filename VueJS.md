@@ -72,11 +72,11 @@ var app = new Vue({    // options
   },  
   mounted: function() {
   },
-  compenents: {
+  compenents: {         // Si on travaile en webcompenent on les déclarent ici
   },
-  directives: {
+  directives: {        // Si on veut créer ses propre directives on les déclarent ici
   },
-  mixin: []
+  mixin: []           // Si on veut factoriser du code qui sera réutiliser dans différents vuejs
 })
 ```
 
