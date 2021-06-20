@@ -68,7 +68,7 @@ Il n'est pas nécessaire de déclarer chaque component globalement. On peut rend
 
 ```javascript
 var Child = {
-  template: '<div>A custom component!</div>'
+  template: `<div>A custom component!</div>`
 }
 new Vue({
   // ...
