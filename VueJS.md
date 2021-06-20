@@ -299,7 +299,7 @@ La différence entre __v-show__ et __v-if__ c'est que v-show correspond à displ
 ```
 
 Possibilité d'ajouter __.prevent__ pour preventDefault()    
-Et de passer des arguments et le $event inline
+Et de passer des arguments et le __$event__ inline qui est une variable réservé dans vuejs qui permet d'acceder a l'event dans l'utilisation d'une méthode
 ```html
 <div id="app">
      <button @click="method" v-on:dbclick="method2"></button>
