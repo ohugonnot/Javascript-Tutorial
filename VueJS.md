@@ -252,6 +252,7 @@ Il est possible de réutiliser un éléments avec sa KEY ou d'éviter la réutil
 La différence entre __v-show__ et __v-if__ c'est que v-show correspond à display:none alors que v-if remove l'element du dom
 
 ####  __v-for__
+Il faut utiliser le :key dans le for pour garder la cohérence des data quand il y a plusieurs elements dynamique dans le DOM qui est loopé
 ```html
 <div id="app">
      <ul>
