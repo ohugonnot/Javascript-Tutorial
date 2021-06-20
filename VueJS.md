@@ -151,6 +151,7 @@ Ou de binder du style ou des class avec des objets, des array ou des boolean
 ```html
 <div class="static"
      v-bind:class="{ active: isActive, 'text-danger': hasError }">
+     :style="{BackgroundColol: isActive ? 'red' : 'white' }">
 </div>
 ```
 
