@@ -147,11 +147,12 @@ Il est possible de rajouter du javascript dans la valeur de l'attribut
 <div v-bind:id="'list-' + id"></div>
 ```
 
-Ou de binder du style ou des class avec des objets, des array ou des boolean
-On peut également passer les objets d'assignement des class et des styles dans des compteuds pour ne pas encombrer le code
+Ou de binder du style ou des class avec des objets, des array d'objets ou des boolean qui s'ajoute a la class de base.   
+On peut également passer les objets d'assignement des class et des styles dans des compteuds pour ne pas encombrer le code         
 ```html
 <div class="static"
-     v-bind:class="{ active: isActive, 'text-danger': hasError }">
+     class='class_base_reste'
+     v-bind:class="['demo',{ active: isActive, 'text-danger': hasError }]">
      :style="{BackgroundColol: isActive ? 'red' : 'white' }">
 </div>
 ```
