@@ -79,6 +79,7 @@ var app = new Vue({    // options
   mixin: []           // Si on veut factoriser du code qui sera réutiliser dans différents vuejs
 })
 ```
+La réactivité de VueJs est du a l'encapsulation Proxy() javascript pour rajouter des handler et rendre les objets réactifs      
 
 ## <a name="cycle"></a>3. Cycle de vie de l'instance
 
