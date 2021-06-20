@@ -80,6 +80,10 @@ var app = new Vue({    // options
 })
 ```
 La réactivité de VueJs est du a l'encapsulation Proxy() javascript pour rajouter des handler et rendre les objets réactifs      
+On passe du Dom au VirtualDom au modele (View ViewModel Model, VVMM)
+![image](https://user-images.githubusercontent.com/13014954/122681536-04a44800-d1f5-11eb-9392-2ea896d4e227.png)
+![image](https://user-images.githubusercontent.com/13014954/122681576-31f0f600-d1f5-11eb-863b-9726a59a0486.png)
+
 
 ## <a name="cycle"></a>3. Cycle de vie de l'instance
 
