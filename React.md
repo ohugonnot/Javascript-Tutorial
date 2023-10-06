@@ -112,7 +112,7 @@ Pour cela on utilise des __Hooks__ React qui nous permette de rafraichir la fonc
 	{cars.map((car) => <Car key={car.id} brand={car.brand} />)}
 	```
  - Style    
- - 	```Javascript
+  	```Javascript
     	// camelCased Property Names
     	// Use backgroundColor instead of background-color:
 	<h1 style={{color: "red"}}>Hello Style!</h1>
@@ -123,4 +123,7 @@ Pour cela on utilise des __Hooks__ React qui nous permette de rafraichir la fonc
 	  return <h1 className={styles.bigblue}>Hello Car!</h1>;
 	}
 	```
-     
+
+   ### Réaliser un projet react
+   ![image](https://github.com/ohugonnot/Javascript-Tutorial/assets/13014954/03b3cccf-722f-4b7e-9ff8-5e6f0e198098)
+  
