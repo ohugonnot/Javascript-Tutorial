@@ -101,9 +101,9 @@ Pour cela on utilise des __Hooks__ React qui nous permette de rafraichir la fonc
 - Affichage conditionnel    
 	```Javascript
 	{unreadMessages.length > 0 &&
-	<h2>
-	  Vous avez {unreadMessages.length} message(s) non-lu(s).
-	</h2>
+		<h2>
+		  Vous avez {unreadMessages.length} message(s) non-lu(s).
+		</h2>
 	}
 	{ isGoal ? <MadeGoal/> : <MissedGoal/> }
 	```
@@ -113,17 +113,83 @@ Pour cela on utilise des __Hooks__ React qui nous permette de rafraichir la fonc
 	```
  - Style    
   	```Javascript
-    	// camelCased Property Names
-    	// Use backgroundColor instead of background-color:
+	// camelCased Property Names
+	// Use backgroundColor instead of background-color:
 	<h1 style={{color: "red"}}>Hello Style!</h1>
 
-    	// CSS module
-    	import styles from './my-style.module.css'; 
+	// CSS module
+   	import styles from './my-style.module.css'; 
 	const Car = () => {
 	  return <h1 className={styles.bigblue}>Hello Car!</h1>;
 	}
 	```
+- __UseEffect()__ : permet de réactualisuer une fonction uniquement quand c'est dépendences changent (ressemble ou Watch et Computed en Vuejs)
+Cela permet de factorisé du code appliquable sur plusieurs State ou est utilisée qd on veut créer une action en réponse à une autre action.    
+![image](https://github.com/ohugonnot/Javascript-Tutorial/assets/13014954/403c88e9-55db-4e49-a8eb-bb5a11d428a9)
+	```Javascript
+	// Si on utilise pas les dependencies il ne sera chargé qu'une fois au chargement du componenent (onMoutend)
+ 	useEffect(() => {}, [])
 
-   ### Réaliser un projet react
-   ![image](https://github.com/ohugonnot/Javascript-Tutorial/assets/13014954/03b3cccf-722f-4b7e-9ff8-5e6f0e198098)
+ 	// Penser a utiliser un debounce si on créer un UseEffect sur un keystroke pour éviter d'envoyer trop de requestes
+  	useEffect(() => {
+		const wait = setTimeout(() => {
+	 		// logique ici
+	 	},500)
+	 	return () => {
+			// suite de la logique ici
+	 		clearTimeout(wait);
+	 	}
+ 	}, [])
+	```
+- __UseReducer()__ : permet de gérer de la complexité dans les states
+![image](https://github.com/ohugonnot/Javascript-Tutorial/assets/13014954/28c110cc-18cc-4fbd-81c5-e92c1bb87a9d)
+	```Javascript
+	const stateReducer = (previousState, action) => {
+ 		if (action.type === "SOME_TYPE") {
+			return customState;
+ 		}
+		return newState;
+ 	} 
+
+ 	const [sate, dispatchState] = UseReducer(stateReducer, initialState, fnInitialState);
+ 	dispatchState({type: "SOME_TYPE", value: "test"})
+	```
+ ![image](https://github.com/ohugonnot/Javascript-Tutorial/assets/13014954/40be1ff7-3ff0-4016-969f-aabf6fd3cc47)
+- __UseContext()__ : permet de sauvegarder des states dans le store et de les utiliser partout dans l'application
+![image](https://github.com/ohugonnot/Javascript-Tutorial/assets/13014954/150ddf3c-b689-4c09-9380-f7ca0e7618fb)
+   
+	```Javascript
+	import React, {useState} from "react";
+	
+	const UserContext = React.createContext({
+	    isLoggedIn: false,
+	    onLogin: (email, password) => {
+	    },
+	    onLogout: () => {
+	    },
+	})
+	
+	export const UserContextProvider = (props) => {
+	    const [isLoggedIn, setIsLoggedIn] = useState(false);
+	
+	    const loginHandler = (email, password) => {
+	        setIsLoggedIn(true)
+	    }
+	
+	    const logoutHandler = () => {
+	        setIsLoggedIn(false)
+	    }
+	
+	    return (
+	        <UserContext.Provider value={{isLoggedIn: isLoggedIn, onLogin: loginHandler, onLogout: logoutHandler}}>
+	            {props.children}
+	        </UserContext.Provider>
+	    )
+	}
+	
+	export default UserContext;
+	```
+
+### Réaliser un projet react
+![image](https://github.com/ohugonnot/Javascript-Tutorial/assets/13014954/03b3cccf-722f-4b7e-9ff8-5e6f0e198098)
   
