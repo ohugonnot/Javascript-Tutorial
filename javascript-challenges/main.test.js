@@ -71,15 +71,14 @@ prendra en entrée une chaîne, devra nettoyer tous les caractères numériques,
 les espacements, caractères et caractères spéciaux ~#$%^&!@*():; "'., tous intacts.
  */
 function stringClean(string) {
-
-    return string
+    return string.replaceAll(/[0-9]/gi, "")
 }
 
 test('Test stringClean', () => {
     expect(stringClean('! !')).toBe('! !')
     expect(stringClean('123456789')).toBe('')
     expect(stringClean('(E3at m2e2!!)')).toBe('(Eat me!!)')
-    expect(stringClean('Wh7y can\'t we3 bu1y the goo0d software3? #cheapskates3')).toBe('Why can\'t we buy the good software? #cheapskate')
+    expect(stringClean('Wh7y can\'t we3 bu1y the goo0d software3? #cheapskates3')).toBe('Why can\'t we buy the good software? #cheapskates')
 })
 
 /* #4 - Supprimer les doublons
