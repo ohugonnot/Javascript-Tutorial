@@ -17,8 +17,7 @@ nbPersonAfterLastStation([[3,0],[9,1],[4,8],[12,2],[6,1],[7,8]])  21
 
  */
 function nbPersonAfterLastStation(list) {
-
-    return list
+    return
 }
 
 test('Test nbPersonAfterLastStation ', () => {
@@ -41,8 +40,7 @@ N'oubliez pas de vérifier les mauvaises valeurs comme null / undefined
 
  */
 function nbMoutons(list) {
-
-    return list
+    return
 }
 
 test('Test nbMoutons', () => {
@@ -71,7 +69,7 @@ prendra en entrée une chaîne, devra nettoyer tous les caractères numériques,
 les espacements, caractères et caractères spéciaux ~#$%^&!@*():; "'., tous intacts.
  */
 function stringClean(string) {
-    return string.replaceAll(/[0-9]/gi, "")
+    return
 }
 
 test('Test stringClean', () => {
@@ -89,13 +87,12 @@ removeDuplicates([1,1,2,4,5,2,1,2,3,5,5,5])
 
  */
 function removeDuplicates(list) {
-
-    return list
+    return
 }
 
 test('Test removeDuplicates', () => {
-    expect(removeDuplicates([1, 1, 2, 4, 5, 2, 1, 2, 3, 5, 5, 5])).toBe([1, 2, 3, 4, 5])
-    expect(removeDuplicates(["orange", 'rouge', 'bleu', 'orange', 'bleu', 'blue', 'rouge', 'jaune'])).toBe(['orange', 'rouge', 'bleu', 'jaune'])
+    expect(removeDuplicates([1, 1, 2, 4, 5, 2, 1, 2, 3, 5, 5, 5])).toStrictEqual([1, 2, 3, 4, 5])
+    expect(removeDuplicates(["orange", 'rouge', 'bleu', 'orange', 'bleu', 'bleu', 'rouge', 'jaune'])).toStrictEqual(['bleu', 'jaune', 'orange', 'rouge'])
 })
 
 
